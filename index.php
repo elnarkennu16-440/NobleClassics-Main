@@ -86,45 +86,51 @@ if (isset($_POST['add_to_cart'])) {
 }
 
 .home_cont {
-  width: 100%;
-  height: 60vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("Display_Images/ClassicBooksBG.png") no-repeat;
-  background-size: contain;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+    width: 100%;
+    height: 95vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("Display_Images/ClassicBooksBG.png") no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem; /* Add padding for alignment */
+}
+
+.home_cont .main_descrip {
+    text-align: left; /* Align text to the left */
+    max-width: 50%; /* Limit width for better responsiveness */
 }
 
 .home_cont .main_descrip h1 {
-  font-size: 5rem;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: white;
+    font-size: 4rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
 }
 
 .home_cont .main_descrip p {
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: white;
 }
 
 .home_cont .main_descrip button {
-  margin: 1rem;
-  padding: 1rem 2rem;
-  background-color: #ebae69;
-  border: none;
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  border-radius: 20px;
-  box-shadow: 2px 2px 10px rgb(213, 194, 108);
+    margin: 1rem;
+    padding: 1rem 2rem;
+    background-color: #ebae69;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    margin-top: 30px;
+    box-shadow: 2px 2px 10px rgb(213, 194, 108);
+
 }
 
 .home_cont .main_descrip button:hover {
-  background-color: #8f6414;
-  color: #f7c073;
+    background-color: #8f6414;
+    color: #f7c073;
 }
 
 .home_cont .home_image {
