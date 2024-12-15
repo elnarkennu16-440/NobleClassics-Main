@@ -190,26 +190,6 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.product_btn {
-  padding: 1rem 2rem;
-  background-color: #ebae69;
-  border: none;
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  border-radius: 30px;
-  box-shadow: 2px 2px 10px rgb(213, 194, 108);
-  cursor: pointer;
-  width: auto; /* Ensures button width adjusts to content */
-  display: inline-flex; /* Makes text and padding align horizontally */
-  justify-content: center; /* Centers the text horizontally */
-  align-items: center; /* Ensures text is vertically centered */
-}
-
-.product_btn:hover {
-  background-color: #8f6414;
-  color: #f7c073;
-}
 
 /* Responsiveness */
 @media (max-width: 768px) {
