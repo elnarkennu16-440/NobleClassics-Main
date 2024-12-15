@@ -47,6 +47,7 @@ if (isset($_POST['add_to_cart'])) {
   ?>
 <style>
 
+
 @keyframes slide-in {
   0% {
     transform: translateX(-100%);
@@ -83,6 +84,14 @@ if (isset($_POST['add_to_cart'])) {
   align-items: center;
   justify-content: center;
   text-decoration: none; /* Ensure there is no underline */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .home_cont {
