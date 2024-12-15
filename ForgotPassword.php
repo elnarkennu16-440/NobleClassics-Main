@@ -43,7 +43,7 @@ if (isset($_POST['set_password'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password Page</title>
+    <title>NOBLECLASSICS-FORGOT PASSWORD</title>
     <link rel="stylesheet" href="ForgotPassword.css">
     
 </head>

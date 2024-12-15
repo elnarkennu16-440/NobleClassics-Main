@@ -80,7 +80,7 @@ if(isset($_POST['update_product'])){
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products</title>
+  <title>ADMIN-ADD PRODUCTS</title>
   <link rel="stylesheet" href="Admin.css">
   <link rel="stylesheet" href="Style.css">
   <link rel="stylesheet" href="https://kit.fontawesome.com/eedbcd0c96.css" crossorigin="anonymous">
