@@ -165,7 +165,7 @@ body {
 }
 
 .about_cont img {
-  max-width: 50%; /* Image takes up 50% of the container */
+  max-width: 45%; /* Image takes up 45% of the container */
   height: auto;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
