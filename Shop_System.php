@@ -2,9 +2,11 @@
 include 'Config.php';
 session_start();
 
-$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$user_id = $_SESSION['user_id'];
 
-// The page will show the content even if the user is not logged in
+if (!isset($user_id)) {
+  header('location:Login.php');
+}
 
 if (isset($_POST['add_to_cart'])) {
   $pro_name = $_POST['product_name'];
