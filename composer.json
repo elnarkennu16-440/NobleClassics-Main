@@ -1,0 +1,8 @@
+{
+    "name": "twomazewaze/noble-classics-main",
+    "description": "NobleClassics is an E-commerce Bookstore Website",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {}
+}
