@@ -94,45 +94,6 @@ body {
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-.about_cont {
-  display: flex;
-  flex-wrap: wrap; /* Ensure the content can wrap on smaller screens */
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-  background-color: #f4f4f4;
-}
-
-.about_cont img {
-  width: 100%;
-  max-width: 500px; /* Ensure the image doesn't get too large */
-  height: auto;
-  border-radius: 8px;
-  margin: 0 20px;
-}
-
-.about_descript {
-  max-width: 600px;
-  padding: 20px;
-  text-align: left;
-  color: #333;
-}
-
-.about_descript h2 {
-  font-family: 'Lato', sans-serif;
-  font-size: 32px;
-  font-weight: bold;
-  font-style: italic;
-  margin-bottom: 15px;
-}
-
-.about_descript p {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #555;
-  margin-bottom: 20px;
-}
-
 .home_cont {
     width: 100%;
     height: 95vh;
@@ -194,6 +155,75 @@ body {
     border-radius: 10px; /* Add subtle rounding */
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* Add shadow for aesthetics */
 }
+
+.about_cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 2rem;
+  flex-wrap: wrap;
+}
+
+.about_cont img {
+  max-width: 50%; /* Image takes up 50% of the container */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  margin-right: 2rem; /* Adds space between the image and text */
+}
+
+.about_descript {
+  max-width: 45%; /* Text takes up 45% of the container */
+}
+
+.about_descript h2 {
+  font-family: 'Lato', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.about_descript p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.product_btn {
+  padding: 1rem 2rem;
+  background-color: #ebae69;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 10px rgb(213, 194, 108);
+  cursor: pointer;
+}
+
+.product_btn:hover {
+  background-color: #8f6414;
+  color: #f7c073;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .about_cont {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about_cont img {
+    max-width: 80%; /* Image takes up more space on smaller screens */
+    margin-bottom: 2rem;
+  }
+
+  .about_descript {
+    max-width: 80%; /* Text container becomes wider */
+  }
+}
+
 
 </style>
 
