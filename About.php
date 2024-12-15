@@ -2,11 +2,9 @@
 include 'Config.php';
 session_start();
 
-$user_id = $_SESSION['user_id'];
+session_start();
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-if(!isset($user_id)){
-  header('location:Login.php');
-}
 ?>
 
 <!DOCTYPE html>
