@@ -94,6 +94,45 @@ body {
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+.about_cont {
+  display: flex;
+  flex-wrap: wrap; /* Ensure the content can wrap on smaller screens */
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  background-color: #f4f4f4;
+}
+
+.about_cont img {
+  width: 100%;
+  max-width: 500px; /* Ensure the image doesn't get too large */
+  height: auto;
+  border-radius: 8px;
+  margin: 0 20px;
+}
+
+.about_descript {
+  max-width: 600px;
+  padding: 20px;
+  text-align: left;
+  color: #333;
+}
+
+.about_descript h2 {
+  font-family: 'Lato', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.about_descript p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+}
+
 .home_cont {
     width: 100%;
     height: 95vh;
