@@ -2,11 +2,9 @@
 include 'Config.php';
 session_start();
 
-$user_id = $_SESSION['user_id'];
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-if (!isset($user_id)) {
-    header('location:Login.php');
-}
+// The page will show the content even if the user is not logged in
 ?>
 
 <!DOCTYPE html>
