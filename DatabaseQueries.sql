@@ -1,5 +1,3 @@
-USE nobleclassics;
-
 CREATE TABLE `cart` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
