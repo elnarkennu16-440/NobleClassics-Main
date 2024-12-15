@@ -200,6 +200,10 @@ body {
   border-radius: 30px;
   box-shadow: 2px 2px 10px rgb(213, 194, 108);
   cursor: pointer;
+  width: auto; /* Ensures button width adjusts to content */
+  display: inline-flex; /* Makes text and padding align horizontally */
+  justify-content: center; /* Centers the text horizontally */
+  align-items: center; /* Ensures text is vertically centered */
 }
 
 .product_btn:hover {
