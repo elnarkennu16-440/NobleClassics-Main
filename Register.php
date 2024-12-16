@@ -4,26 +4,36 @@ include 'Config.php';
 
 if(isset($_POST['submit'])){
 
-    $name=mysqli_real_escape_string($conn,$_POST['name']);
-    $email=mysqli_real_escape_string($conn,$_POST['email']);
-    $password=mysqli_real_escape_string($conn,md5($_POST['password']) );
-    $cpassword=mysqli_real_escape_string($conn,md5($_POST['cpassword']) );
-    $user_type=$_POST['user_type'];
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+    $cpassword = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
+    $user_type = $_POST['user_type'];
 
-    $select_users=mysqli_query($conn,"SELECT * FROM `register` WHERE email='$email' AND password='$password'") or die('query failed');
+    $select_users = mysqli_query($conn, "SELECT * FROM `register` WHERE email='$email'") or die('query failed');
 
     if(mysqli_num_rows($select_users) > 0){
-        $message[]='User already exists!';
-    }else{
-        if($password!=$cpassword){
-            $message[]='Confirm password not matched!';
+        $message[] = 'User already exists!';
+    } else {
+        if($password != $cpassword){
+            $message[] = 'Confirm password not matched!';
+        } else {
+            if ($user_type == 'admin') {
+                // Check if an admin already exists
+                $check_admin = mysqli_query($conn, "SELECT * FROM `register` WHERE user_type='admin'") or die('query failed');
+                if (mysqli_num_rows($check_admin) > 0) {
+                    $message[] = 'Administrator account already exists!';
+                } else {
+                    mysqli_query($conn, "INSERT INTO `register`(name, email, password, user_type) VALUES('$name', '$email', '$cpassword', '$user_type')") or die('query failed');
+                    $message[] = 'Administrator registered successfully!';
+                    header('location:Login.php');
+                }
+            } else {
+                mysqli_query($conn, "INSERT INTO `register`(name, email, password, user_type) VALUES('$name', '$email', '$cpassword', '$user_type')") or die('query failed');
+                $message[] = 'Registered successfully!';
+                header('location:Login.php');
+            }
         }
-        else{
-            mysqli_query($conn,"INSERT INTO `register`(name,email, password, user_type) VALUES('$name','$email','$cpassword','$user_type')") or die('query failed');
-            $message[]='Registered Successfully!';
-            header('location:Login.php');
-        }
-        
     }
 }
 
