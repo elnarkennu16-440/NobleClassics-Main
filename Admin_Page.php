@@ -7,7 +7,6 @@ $admin_id = $_SESSION['admin_id'];
 if (!isset($admin_id)) {
   header('location:Login.php');
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -124,10 +123,30 @@ if (!isset($admin_id)) {
     }
 
     .reports-header i {
-      margin-right: 10px; /* Space between icon and text */
+      margin-right: 10px;
       font-size: 40px;
       color: darksalmon;
     }
+
+   /* General container for the chart */
+.graph-container {
+  max-width: 100%;
+  margin: 30px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style for the canvas */
+#adminGraph {
+  width: 100%;  /* Use 100% of the container's width */
+  height: 500px; /* Set a fixed height for the graph */
+  max-width: 1200px; /* Maximum width */
+  margin: 0 auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+
+
   </style>
 
 </head>
@@ -139,14 +158,14 @@ if (!isset($admin_id)) {
   ?>
 
   <section class="admin_dashboard">
-    <!-- Reports Header Section - Positioned above admin_box_container -->
     <div class="reports-header">
-      <i class="fas fa-chart-line"></i> <!-- Icon for reports -->
+      <i class="fas fa-chart-line"></i> 
       REPORTS
     </div>
 
     <div class="admin_box_container">
 
+      <!-- Pending Payments -->
       <div class="admin_box">
         <?php
         $total_pendings = 0;
@@ -157,32 +176,30 @@ if (!isset($admin_id)) {
             $total_price = $fetch_pendings['total_price'];
             $total_pendings += $total_price;
           }
-          ;
         }
-        ;
         ?>
         <h3>₱. <?php echo $total_pendings; ?></h3>
         <p>PENDING PAYMENT TRANSACTIONS</p>
       </div>
 
+      <!-- Completed Payments -->
       <div class="admin_box">
         <?php
         $total_completed = 0;
-        $selectcompleted = mysqli_query($conn, "SELECT total_price FROM `orders` WHERE payment_status = 'completed'") or die('query failed');
+        $select_completed = mysqli_query($conn, "SELECT total_price FROM `orders` WHERE payment_status = 'completed'") or die('query failed');
 
-        if (mysqli_num_rows($selectcompleted) > 0) {
-          while ($fetch_completed = mysqli_fetch_assoc($selectcompleted)) {
+        if (mysqli_num_rows($select_completed) > 0) {
+          while ($fetch_completed = mysqli_fetch_assoc($select_completed)) {
             $total_price = $fetch_completed['total_price'];
             $total_completed += $total_price;
           }
-          ;
         }
-        ;
         ?>
         <h3>₱. <?php echo $total_completed; ?></h3>
         <p>COMPLETE PAYMENTS TRANSACTIONS</p>
       </div>
 
+      <!-- Order Records -->
       <div class="admin_box">
         <?php
         $select_orders = mysqli_query($conn, "SELECT * FROM `orders`") or die('query failed');
@@ -192,6 +209,7 @@ if (!isset($admin_id)) {
         <p>PLACED ORDER RECORDS</p>
       </div>
 
+      <!-- Product Records -->
       <div class="admin_box">
         <?php
         $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
@@ -201,6 +219,7 @@ if (!isset($admin_id)) {
         <p>ADDED PRODUCTS RECORDS</p>
       </div>
 
+      <!-- Customer Records -->
       <div class="admin_box">
         <?php
         $select_users = mysqli_query($conn, "SELECT * FROM `register` WHERE user_type='user'") or die('query failed');
@@ -210,6 +229,7 @@ if (!isset($admin_id)) {
         <p>CURRENT ONLINE CUSTOMER</p>
       </div>
 
+      <!-- Admin Records -->
       <div class="admin_box">
         <?php
         $select_admin = mysqli_query($conn, "SELECT * FROM `register` WHERE user_type='admin'") or die('query failed');
@@ -219,6 +239,7 @@ if (!isset($admin_id)) {
         <p>SYSTEM ADMINISTRATOR</p>
       </div>
 
+      <!-- Account Records -->
       <div class="admin_box">
         <?php
         $select_accounts = mysqli_query($conn, "SELECT * FROM `register`") or die('query failed');
@@ -228,6 +249,7 @@ if (!isset($admin_id)) {
         <p>TOTAL ACCOUNTS REGISTERED</p>
       </div>
 
+      <!-- Messages Records -->
       <div class="admin_box">
         <?php
         $select_messages = mysqli_query($conn, "SELECT * FROM `message`") or die('query failed');
@@ -239,10 +261,64 @@ if (!isset($admin_id)) {
 
     </div>
 
+    <!-- Graph Section -->
+    <div class="graph-container">
+      <canvas id="adminGraph"></canvas>
+    </div>
+
   </section>
 
   <script src="Admin.js"></script>
-  <script src="https://kit.fontawesome.com/eedbcd0c96.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Example data for the current year (2024)
+    const adminData = {
+      labels: [
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+      ],
+      datasets: [
+        {
+          label: "Revenue (in PHP)",
+          data: [0, 0, 1000, 500, 0, 2000, 1500, 0, 300, 0, 0, 10000], // Low sales; December is ₱10,000
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", 
+            "rgba(255, 206, 86, 0.2)", "rgba(75, 192, 192, 0.2)", 
+            "rgba(153, 102, 255, 0.2)", "rgba(255, 159, 64, 0.2)", 
+            "rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", 
+            "rgba(255, 206, 86, 0.2)", "rgba(75, 192, 192, 0.2)", 
+            "rgba(153, 102, 255, 0.2)", "rgba(255, 159, 64, 0.2)"
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", 
+            "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)", 
+            "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)", 
+            "rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", 
+            "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)", 
+            "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)"
+          ],
+          borderWidth: 1
+        }
+      ]
+    };
+
+    const ctx = document.getElementById('adminGraph').getContext('2d');
+    const adminGraph = new Chart(ctx, {
+      type: 'line', // Line chart for monthly trends
+      data: adminData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          },
+          tooltip: {
+            enabled: true
+          }
+        }
+      }
+    });
+  </script>
 
 </body>
 
