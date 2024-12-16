@@ -52,31 +52,37 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="Login.css">
     
     <style>
-        /* Message Box Styling */
+    /* Centered and Responsive Message Box */
 .message {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    flex-direction: row; /* Keep the icon inline with the text */
     background-color: #ffe4b5; /* Light orange background */
-    color: #333; /* Darker text for contrast */
-    font-size: 18px; /* Bigger font size */
-    font-weight: 500;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 10px auto; /* Center in the middle */
-    max-width: 90%; /* Responsive width */
-    text-align: center;
-    transition: 0.3s ease;
+    color: #333; /* Dark text color */
+    font-size: 18px; /* Larger text size */
+    font-weight: 500; /* Slightly bold */
+    padding: 15px 30px; /* Add space around text */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin: 20px auto; /* Center horizontally with margin auto */
+    max-width: 600px; /* Restrict maximum width */
+    width: calc(100% - 40px); /* Responsive width with padding */
+    text-align: center; /* Center-align text */
+    position: relative; /* Position to adjust the close button */
+    transition: 0.3s ease; /* Smooth animations */
 }
 
-/* Dismiss button */
+/* Close Button Styling */
 .message i {
-    cursor: pointer;
-    color: #ff6347; /* Light red for the close icon */
-    font-size: 20px;
-    margin-left: 10px;
-    transition: 0.3s ease;
+    position: absolute; /* Absolute positioning within the message */
+    right: 20px; /* Align close button to the right */
+    top: 50%; /* Vertically align */
+    transform: translateY(-50%); /* Center the icon */
+    font-size: 20px; /* Larger close icon */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    color: #ff6347; /* Close button color */
+    transition: 0.3s ease; /* Hover effect */
 }
 
 .message i:hover {
@@ -86,10 +92,16 @@ if(isset($_POST['submit'])){
 /* Responsive Design */
 @media (min-width: 768px) {
     .message {
-        max-width: 60%; /* Larger screens: shrink width */
+        max-width: 80%; /* Slightly larger message width on tablets */
     }
 }
 
+@media (min-width: 1024px) {
+    .message {
+        max-width: 600px; /* Restrict to 600px for desktops */
+    }
+}
+    
     </style>
 </head>
 
