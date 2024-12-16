@@ -52,54 +52,24 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="Login.css">
     
     <style>
-  /* Message Box Styling - Centered at Top of Form */
-.message {
+ .message {
+    background-color: #fde8cd;
+    border: 1px solid #f5c389;
+    color: #d47d09;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 25px;
+    font-family: Arial, sans-serif;
     display: flex;
-    align-items: center; /* Vertically center content within the box */
-    justify-content: center; /* Horizontally center content */
-    flex-direction: row; /* Keep text and close button inline */
-    background-color: #ffe4b5; /* Light orange background */
-    color: #333; /* Darker text for readability */
-    font-size: 18px; /* Slightly larger font */
-    font-weight: 500; /* Bold text */
-    padding: 15px 30px; /* Spacing inside the message box */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
-    margin: 0 auto 20px auto; /* Center horizontally and add space below */
-    width: calc(100% - 40px); /* Responsive width with padding */
-    max-width: 600px; /* Restrict maximum width */
-    text-align: center; /* Center-align text */
-    position: relative; /* Required for close button positioning */
-    transition: 0.3s ease; /* Smooth appearance */
+    justify-content: center; /* Centers text horizontally */
+    align-items: center; /* Centers text vertically */
+    text-align: center;
 }
 
-/* Close Button Styling */
 .message i {
-    position: absolute; /* Position within the message box */
-    right: 20px; /* Align to the right */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Adjust vertical alignment */
-    font-size: 20px; /* Larger close button */
-    cursor: pointer; /* Interactive pointer */
-    color: #ff6347; /* Red color for close button */
-    transition: 0.3s ease; /* Smooth hover effect */
-}
-
-.message i:hover {
-    color: #d62828; /* Darker red on hover */
-}
-
-/* Responsive Adjustments */
-@media (min-width: 768px) {
-    .message {
-        max-width: 80%; /* Slightly larger width on tablets */
-    }
-}
-
-@media (min-width: 1024px) {
-    .message {
-        max-width: 600px; /* Limit to 600px on desktops */
-    }
+    cursor: pointer;
+    margin-left: 10px; /* Optional: space between text and icon */
 }
 
     </style>
