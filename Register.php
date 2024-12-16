@@ -66,16 +66,13 @@ if (isset($_POST['submit'])) {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
-            /* Centers text horizontally */
             align-items: center;
-            /* Centers text vertically */
             text-align: center;
         }
 
         .message i {
             cursor: pointer;
             margin-left: 10px;
-            /* Optional: space between text and icon */
         }
     </style>
 
