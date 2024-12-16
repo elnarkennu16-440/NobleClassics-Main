@@ -13,24 +13,24 @@ if (isset($_POST['submit'])) {
     $select_users = mysqli_query($conn, "SELECT * FROM `register` WHERE email='$email'") or die('query failed');
 
     if (mysqli_num_rows($select_users) > 0) {
-        $message[] = 'User already exists!';
+        $message[] = 'User Already Exists!';
     } else {
         if ($password != $cpassword) {
-            $message[] = 'Confirm password not matched!';
+            $message[] = 'Confirm Password Not Matched!';
         } else {
             if ($user_type == 'admin') {
                 // Check if an admin already exists
                 $check_admin = mysqli_query($conn, "SELECT * FROM `register` WHERE user_type='admin'") or die('query failed');
                 if (mysqli_num_rows($check_admin) > 0) {
-                    $message[] = 'Administrator account already exists!';
+                    $message[] = 'Administrator Account Already Exists!';
                 } else {
                     mysqli_query($conn, "INSERT INTO `register`(name, email, password, user_type) VALUES('$name', '$email', '$cpassword', '$user_type')") or die('query failed');
-                    $message[] = 'Administrator registered successfully!';
+                    $message[] = 'Administrator Registered Successfully!';
                     header('location:Login.php');
                 }
             } else {
                 mysqli_query($conn, "INSERT INTO `register`(name, email, password, user_type) VALUES('$name', '$email', '$cpassword', '$user_type')") or die('query failed');
-                $message[] = 'Registered successfully!';
+                $message[] = 'Registered Successfully!';
                 header('location:Login.php');
             }
         }
@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
-            font-size: 25px !important;
+            font-size: 40px !important;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
             /* Optional: space between text and icon */
         }
     </style>
-    
+
 </head>
 
 <body>
