@@ -55,21 +55,30 @@ if(isset($_POST['submit'])){
 
     <style>
         .message {
-            background-color: #fde8cd;
+            background-color:#2d2111;
             border: 1px solid #f5c389;
-            color: #d47d09;
+            color:rgb(214, 163, 97);
             padding: 10px;
-            margin: 10px 0;
+            margin: 10px auto;
             border-radius: 5px;
             font-size: 18px;
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
+            display: inline-block;
+            max-width: 90%;
+            box-sizing: border-box;
         }
 
         .message i {
+            margin-left: 10px;
             cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .message {
+                font-size: 16px;
+                padding: 8px;
+            }
         }
     </style>
 </head>
