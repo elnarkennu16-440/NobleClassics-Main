@@ -52,56 +52,56 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="Login.css">
     
     <style>
-    /* Centered and Responsive Message Box */
+  /* Message Box Styling - Centered at Top of Form */
 .message {
     display: flex;
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
-    flex-direction: row; /* Keep the icon inline with the text */
+    align-items: center; /* Vertically center content within the box */
+    justify-content: center; /* Horizontally center content */
+    flex-direction: row; /* Keep text and close button inline */
     background-color: #ffe4b5; /* Light orange background */
-    color: #333; /* Dark text color */
-    font-size: 18px; /* Larger text size */
-    font-weight: 500; /* Slightly bold */
-    padding: 15px 30px; /* Add space around text */
+    color: #333; /* Darker text for readability */
+    font-size: 18px; /* Slightly larger font */
+    font-weight: 500; /* Bold text */
+    padding: 15px 30px; /* Spacing inside the message box */
     border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    margin: 20px auto; /* Center horizontally with margin auto */
-    max-width: 600px; /* Restrict maximum width */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+    margin: 0 auto 20px auto; /* Center horizontally and add space below */
     width: calc(100% - 40px); /* Responsive width with padding */
+    max-width: 600px; /* Restrict maximum width */
     text-align: center; /* Center-align text */
-    position: relative; /* Position to adjust the close button */
-    transition: 0.3s ease; /* Smooth animations */
+    position: relative; /* Required for close button positioning */
+    transition: 0.3s ease; /* Smooth appearance */
 }
 
 /* Close Button Styling */
 .message i {
-    position: absolute; /* Absolute positioning within the message */
-    right: 20px; /* Align close button to the right */
-    top: 50%; /* Vertically align */
-    transform: translateY(-50%); /* Center the icon */
-    font-size: 20px; /* Larger close icon */
-    cursor: pointer; /* Pointer cursor for interactivity */
-    color: #ff6347; /* Close button color */
-    transition: 0.3s ease; /* Hover effect */
+    position: absolute; /* Position within the message box */
+    right: 20px; /* Align to the right */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust vertical alignment */
+    font-size: 20px; /* Larger close button */
+    cursor: pointer; /* Interactive pointer */
+    color: #ff6347; /* Red color for close button */
+    transition: 0.3s ease; /* Smooth hover effect */
 }
 
 .message i:hover {
     color: #d62828; /* Darker red on hover */
 }
 
-/* Responsive Design */
+/* Responsive Adjustments */
 @media (min-width: 768px) {
     .message {
-        max-width: 80%; /* Slightly larger message width on tablets */
+        max-width: 80%; /* Slightly larger width on tablets */
     }
 }
 
 @media (min-width: 1024px) {
     .message {
-        max-width: 600px; /* Restrict to 600px for desktops */
+        max-width: 600px; /* Limit to 600px on desktops */
     }
 }
-    
+
     </style>
 </head>
 
