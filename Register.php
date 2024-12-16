@@ -61,12 +61,15 @@ if(isset($_POST['submit'])){
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
-            font-size: 25px;
+            font-size: 40px;
             font-family: Arial, sans-serif;
-            display: flex;
             justify-content: space-between;
             align-items: center;
             text-align: center;
+            display: inline-flex; /* Ensures better alignment with text and icons */
+            box-sizing: border-box;
+            word-wrap: break-word; /* Handles long words gracefully */
+            vertical-align: middle;
         }
 
         .message i {
