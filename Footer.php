@@ -1,11 +1,10 @@
 <section class="footer">
   <div class="footer_box_container">
     <div class="footer_box">
-      <div class="footer_logo_cont">
-        <img src="Display_Images/Book_Logo.png" alt="">
-        <a href="index.php" class="book_logo">NobleClassics</a>
-        <link rel="stylesheet" href="Style.css">
-      </div>
+    <div class="footer_logo_cont">
+  <a href="index.php" class="book_logo">NobleClassics</a>
+  <link rel="stylesheet" href="Style.css">
+</div>
       <p><i class="fas fa-phone"></i> 09453870032</p>
       <p><i class="fas fa-envelope"></i> n.classics@gmail.com</p>
       <p><i class="fas fa-map-marker-alt"></i> Daet, CN, Philippines</p>
