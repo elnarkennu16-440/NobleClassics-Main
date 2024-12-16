@@ -47,34 +47,49 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOBLECLASSICS - REGISTER ACCOUNT</title>
 
-    <!-- Font awesome Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Css File Link -->
     <link rel="stylesheet" href="Login.css">
-
+    
     <style>
-        .message {
-            background-color: #2b1f0f;
-            border: 1px solid #f5c389;
-            color:rgb(242, 182, 104);
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-size: 40px;
-            font-family: Arial, sans-serif;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            display: inline-flex; /* Ensures better alignment with text and icons */
-            box-sizing: border-box;
-            word-wrap: break-word; /* Handles long words gracefully */
-            vertical-align: middle;
-        }
+        /* Message Box Styling */
+.message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffe4b5; /* Light orange background */
+    color: #333; /* Darker text for contrast */
+    font-size: 18px; /* Bigger font size */
+    font-weight: 500;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px auto; /* Center in the middle */
+    max-width: 90%; /* Responsive width */
+    text-align: center;
+    transition: 0.3s ease;
+}
 
-        .message i {
-            cursor: pointer;
-        }
+/* Dismiss button */
+.message i {
+    cursor: pointer;
+    color: #ff6347; /* Light red for the close icon */
+    font-size: 20px;
+    margin-left: 10px;
+    transition: 0.3s ease;
+}
+
+.message i:hover {
+    color: #d62828; /* Darker red on hover */
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .message {
+        max-width: 60%; /* Larger screens: shrink width */
+    }
+}
+
     </style>
 </head>
 
