@@ -21,7 +21,7 @@
     </div>
 
     <div class="footer_box">
-      <h3>Other Links</h3>
+      <h3>Quick Links</h3>
       <a href="Login.php">Login</a>
       <a href="Register.php">Register</a>
       <a href="Cart_System.php">Cart</a>
