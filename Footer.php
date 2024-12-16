@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="Style.css">
       </div>
       <p><i class="fas fa-phone"></i> 09453870032</p>
-      <p><i class="fas fa-envelope"></i> nobleclassics@gmail.com</p>
+      <p><i class="fas fa-envelope"></i> n.classics@gmail.com</p>
       <p><i class="fas fa-map-marker-alt"></i> Daet, CN, Philippines</p>
       <p><i class="fa-solid fa-shop"></i> 7:00am - 9:00pm</p>
     </div>
