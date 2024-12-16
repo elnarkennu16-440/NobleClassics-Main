@@ -1,10 +1,8 @@
 <section class="footer">
   <div class="footer_box_container">
+
     <div class="footer_box">
-    <div class="footer_logo_cont">
-  <a href="index.php" class="book_logo">NobleClassics</a>
-  <link rel="stylesheet" href="Style.css">
-</div>
+      <h3>NobleClassics</h3>
       <p><i class="fas fa-phone"></i> 09453870032</p>
       <p><i class="fas fa-envelope"></i> n.classics@gmail.com</p>
       <p><i class="fas fa-map-marker-alt"></i> Daet, CN, Philippines</p>
@@ -40,153 +38,163 @@
 </section>
 
 <style>
- /* Footer Styles */
-.footer {
-  background-color: #2b1b03;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 2rem;
-  gap: 1rem;
-  cursor: pointer;
-}
+  /* Footer Styles */
+  .footer {
+    background-color: #2b1b03;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+    gap: 1rem;
+    cursor: pointer;
+  }
 
-.footer_box_container {
-  width: 90%;
-  display: flex;
-  padding: 2rem;
-  justify-content: space-between;
-  gap: 1rem;
-}
+  .footer_box_container {
+    width: 90%;
+    display: flex;
+    padding: 2rem;
+    justify-content: space-between;
+    gap: 1rem;
+  }
 
-.footer_box {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  width: 25%; /* Default width for desktop */
-}
-
-/* Footer Box Title */
-.footer_box h3 {
-  font-size: 1.7rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
-}
-
-/* Footer Box Paragraph Text */
-.footer_box p {
-  font-size: 1rem;
-  letter-spacing: 1px;
-  margin-top: 0.5rem;
-  text-align: left;
-}
-
-/* Footer Links */
-.footer_box a {
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-  letter-spacing: 0.6px;
-  margin-top: 0.5rem;
-}
-
-.footer_box a:hover::after {
-  content: "";
-  display: block;
-  width: 35px;
-  border-bottom: 2px solid #db9d45;
-  color: #805e49;
-}
-
-/* Footer Logo Container */
-.footer_logo_cont {
-  width: 100%;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.footer_logo_cont a {
-  font-size: 1.7rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-}
-
-.footer_logo_cont img {
-  width: 10%;
-}
-
-/* Social Media Icons */
-.social-media {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 1rem;
-}
-
-.social-media a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 10px;
-}
-
-.social-media img {
-  width: 30px;
-  height: auto;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
   .footer_box {
-    width: 30%; /* Slightly smaller width to fit content */
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 25%;
+    /* Default width for desktop */
   }
 
   /* Footer Box Title */
   .footer_box h3 {
-    font-size: 1.4rem; /* Smaller font size for headings */
+    font-size: 1.7rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
   }
 
   /* Footer Box Paragraph Text */
   .footer_box p {
-    font-size: 0.9rem; /* Smaller font size for paragraph text */
-  }
-
-  /* Specifically for the email paragraph */
-  .footer_box p:nth-child(3) {
-    font-size: 0.7rem; /* Make email smaller */
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+    text-align: left;
   }
 
   /* Footer Links */
   .footer_box a {
-    font-size: 0.9rem; /* Smaller font size for links */
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.6px;
+    margin-top: 0.5rem;
   }
 
-  /* Footer Logo Text */
+  .footer_box a:hover::after {
+    content: "";
+    display: block;
+    width: 35px;
+    border-bottom: 2px solid #db9d45;
+    color: #805e49;
+  }
+
+  /* Footer Logo Container */
+  .footer_logo_cont {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
   .footer_logo_cont a {
-    font-size: 1.5rem; /* Smaller font size for logo text */
+    font-size: 1.7rem;
+    font-weight: 500;
+    letter-spacing: 1px;
   }
 
-  /* Footer Logo Image */
   .footer_logo_cont img {
-    width: 12%; /* Slightly bigger logo image */
+    width: 10%;
   }
 
   /* Social Media Icons */
+  .social-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .social-media a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+  }
+
   .social-media img {
-    width: 25px; /* Reduce icon size */
+    width: 30px;
+    height: auto;
   }
 
-  /* Ensure footer boxes are horizontally aligned */
-  .footer_box_container {
-    flex-wrap: nowrap; /* Prevent wrapping */
-    gap: 1rem; /* Maintain spacing between columns */
-  }
-}
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .footer_box {
+      width: 30%;
+      /* Slightly smaller width to fit content */
+    }
 
+    /* Footer Box Title */
+    .footer_box h3 {
+      font-size: 1.4rem;
+      /* Smaller font size for headings */
+    }
+
+    /* Footer Box Paragraph Text */
+    .footer_box p {
+      font-size: 0.9rem;
+      /* Smaller font size for paragraph text */
+    }
+
+    /* Specifically for the email paragraph */
+    .footer_box p:nth-child(3) {
+      font-size: 0.7rem;
+      /* Make email smaller */
+    }
+
+    /* Footer Links */
+    .footer_box a {
+      font-size: 0.9rem;
+      /* Smaller font size for links */
+    }
+
+    /* Footer Logo Text */
+    .footer_logo_cont a {
+      font-size: 1.5rem;
+      /* Smaller font size for logo text */
+    }
+
+    /* Footer Logo Image */
+    .footer_logo_cont img {
+      width: 12%;
+      /* Slightly bigger logo image */
+    }
+
+    /* Social Media Icons */
+    .social-media img {
+      width: 25px;
+      /* Reduce icon size */
+    }
+
+    /* Ensure footer boxes are horizontally aligned */
+    .footer_box_container {
+      flex-wrap: nowrap;
+      /* Prevent wrapping */
+      gap: 1rem;
+      /* Maintain spacing between columns */
+    }
+  }
 </style>
