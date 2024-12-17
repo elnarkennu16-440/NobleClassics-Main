@@ -76,21 +76,19 @@ if (isset($_POST['submit'])) {
       padding-right: 40px;
       display: flex;
       justify-content: center;
+      margin-bottom: 20px;
+      /* Add some margin below to separate from login form */
     }
-
 
     .animated-text span {
       display: block;
-      /* Remove flex */
     }
 
     .animated-text span::before {
       content: "";
       display: block;
       width: 130px;
-      /* Increased width */
       height: 130px;
-      /* Increased height */
       border-radius: 50%;
       overflow: hidden;
       margin: 0 auto 10px;
@@ -98,12 +96,11 @@ if (isset($_POST['submit'])) {
       background-size: cover;
     }
 
-
     .animated-text span::after {
       content: "";
       position: absolute;
       width: 5px;
-      height: 60%;
+      height: 50% !important;
       border-left: 3px solid burlywood;
       animation: cursor .8s infinite typing 20s steps(14) infinite;
     }
@@ -140,7 +137,6 @@ if (isset($_POST['submit'])) {
       100% {
         content: "Login and Register Now";
       }
-
     }
 
     @keyframes typing {
@@ -171,19 +167,88 @@ if (isset($_POST['submit'])) {
       }
     }
 
-    /* For smaller screens (mobile) */
-    @media (max-width: 600px) {
-      .animated-text {
-        position: absolute;
-        top: 80px;
-        /* Adjust top for mobile */
-        width: 100%;
-        font-size: 8vw;
-        text-align: center;
-        flex-direction: row;
-        justify-content: center;
-      }
-    }
+    /* Default for larger screens (desktop) */
+.animated-text {
+  position: relative;
+  text-align: center;
+  width: 25%;
+  padding-right: 40px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.animated-text span {
+  display: block;
+  font-size: 35px;  /* Adjust font size to match the desired size */
+  line-height: 1;  /* Ensure line height matches font size */
+}
+
+.animated-text span::before {
+  content: "";
+  display: block;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 10px;
+  background-image: url("Display_Images/login-profile.png");
+  background-size: cover;
+}
+
+.animated-text span::after {
+  content: "";
+  position: absolute;
+  width: 3px;  /* Adjust width of cursor */
+  height: 50%;  /* Make cursor height the same as text height */
+  border-left: 3px solid burlywood;
+  animation: cursor 0.8s infinite steps(14) infinite;
+}
+
+@keyframes cursor {
+  50% {
+    border-left: 2px solid burlywood; /* Adjust to make blinking effect */
+  }
+}
+
+/* For smaller screens (mobile) */
+@media (max-width: 600px) {
+  .animated-text {
+    position: absolute;
+    top: 10px;
+    left: 55%;
+    transform: translateX(-50%);
+    width: 80% !important;
+    font-size: 14px !important;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 0;
+    margin-bottom: auto;
+  }
+
+  .animated-text span {
+    font-size: 16px !important;
+  }
+
+  .animated-text span::before {
+    width: 50px;
+    height: 50px;
+  }
+
+  .animated-text span::after {
+    width: 2px;
+    height: 20% !important;
+  }
+
+  /* Adjust login form positioning */
+  .box {
+    width: 90%;
+    padding: 15px;
+    margin-top: 120px;
+  }
+}
+
   </style>
 </head>
 
