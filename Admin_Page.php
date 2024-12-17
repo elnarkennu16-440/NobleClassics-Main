@@ -279,7 +279,7 @@ if (!isset($admin_id)) {
       ],
       datasets: [
         {
-          label: "Revenue (in PHP)",
+          label: "2024 Revenue (in PHP)",
           data: [0, 0, 1000, 500, 0, 2000, 1500, 0, 300, 0, 0, 10000], // Low sales; December is ₱10,000
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", 
