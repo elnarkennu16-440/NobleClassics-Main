@@ -3,26 +3,26 @@
 
     <div class="footer_box">
       <h3>Quick Links</h3>
-      <a href="Login.php">Login</a>
-      <a href="Register.php">Register</a>
-      <a href="Shop_System.php">Shop</a>
-      <a href="Cart_System.php">Cart</a>
+      <a href="Login.php"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a href="Register.php"><i class="fas fa-user-plus"></i> Register</a>
+      <a href="Shop_System.php"><i class="fas fa-store"></i> Shop</a>
+      <a href="Cart_System.php"><i class="fas fa-shopping-cart"></i> Cart</a>
     </div>
 
     <div class="footer_box">
       <h3>Helpful Links</h3>
-      <a href="index.php">Home</a>
-      <a href="About.php">About Us</a>
-      <a href="Contact.php">Contact Us</a>
-      <a href="Order_System.php">Order</a>
+      <a href="index.php"><i class="fas fa-home"></i> Home</a>
+      <a href="About.php"><i class="fas fa-info-circle"></i> About Us</a>
+      <a href="Contact.php"><i class="fas fa-phone-alt"></i> Contact Us</a>
+      <a href="Order_System.php"><i class="fas fa-box"></i> Order</a>
     </div>
 
     <div class="footer_box">
       <h3>NobleClassics</h3>
       <p><i class="fas fa-phone"></i> 09453870032</p>
-      <p><i class="fas fa-envelope"></i>nc.books@gmail.com</p>
+      <p><i class="fas fa-envelope"></i> nc.shop@gmail.com</p>
       <p><i class="fas fa-map-marker-alt"></i> Daet, Camarines Norte, Philippines</p>
-      <p><i class="fa-solid fa-shop"></i>7:00am - 9:00pm</p>
+      <p><i class="fa-solid fa-shop"></i> 7:00am - 9:00pm</p>
     </div>
   </div>
 
@@ -34,8 +34,11 @@
     <a href="https://www.messenger.com"><img src="SocialMedia_Icons/messenger.png" alt="Messenger"></a>
   </div>
 
-  <p>Copyright <i class="fa-regular fa-copyright"></i> 2024 <span>NobleClassics | All Rights Reserved.</span></p>
+  <div class="copyright">
+    <p>Copyright <i class="fa-regular fa-copyright"></i> 2024 <span>NobleClassics | All Rights Reserved.</span></p>
+  </div>
 </section>
+
 
 <style>
   /* Footer Styles */
@@ -49,6 +52,8 @@
     padding-bottom: 2rem;
     gap: 1rem;
     cursor: pointer;
+    font-size: 16px;
+    /* Adjusted font size to 16px smaller */
   }
 
   .footer_box_container {
@@ -69,7 +74,8 @@
 
   /* Footer Box Title */
   .footer_box h3 {
-    font-size: 1.7rem;
+    font-size: 1.2rem;
+    /* Adjusted to 16px smaller */
     font-weight: 500;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
@@ -77,7 +83,8 @@
 
   /* Footer Box Paragraph Text */
   .footer_box p {
-    font-size: 1rem;
+    font-size: 0.8rem;
+    /* Adjusted to 16px smaller */
     letter-spacing: 1px;
     margin-top: 0.5rem;
     text-align: left;
@@ -87,11 +94,18 @@
   .footer_box a {
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
+    /* Adjusted to 16px smaller */
     letter-spacing: 0.6px;
     margin-top: 0.5rem;
   }
 
+  .footer_box a i {
+    margin-right: 5px;
+    /* Add space between icons and text */
+  }
+
+  /* Footer Box Hover Effect */
   .footer_box a:hover::after {
     content: "";
     display: block;
@@ -110,8 +124,7 @@
   }
 
   .footer_logo_cont a {
-    font-size: 1.7rem;
-    font-weight: 500;
+    font-size: 1.5rem;
     letter-spacing: 1px;
   }
 
@@ -136,9 +149,26 @@
   }
 
   .social-media img {
-    width: 30px;
+    width: 25px;
+    /* Reduced icon size */
     height: auto;
   }
+
+  .copyright {
+    margin-top: 1rem;
+    text-align: center;
+    /* Center the text */
+  }
+
+  .copyright p {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .copyright span {
+    font-weight: bold;
+  }
+
 
   /* Mobile Responsiveness */
   @media (max-width: 768px) {
@@ -147,54 +177,46 @@
       /* Slightly smaller width to fit content */
     }
 
-    /* Footer Box Title */
     .footer_box h3 {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       /* Smaller font size for headings */
     }
 
-    /* Footer Box Paragraph Text */
     .footer_box p {
-      font-size: 0.9rem;
+      font-size: 0.6rem;
       /* Smaller font size for paragraph text */
     }
 
-    /* Specifically for the email paragraph */
-    .footer_box p:nth-child(3) {
-      font-size: 0.7rem;
-      /* Make email smaller */
-    }
-
-    /* Footer Links */
     .footer_box a {
-      font-size: 0.9rem;
+      font-size: 0.6rem;
       /* Smaller font size for links */
     }
 
-    /* Footer Logo Text */
     .footer_logo_cont a {
-      font-size: 1.5rem;
-      /* Smaller font size for logo text */
+      font-size: 1.3rem;
     }
 
-    /* Footer Logo Image */
     .footer_logo_cont img {
       width: 12%;
-      /* Slightly bigger logo image */
     }
 
-    /* Social Media Icons */
     .social-media img {
-      width: 25px;
-      /* Reduce icon size */
+      width: 20px;
     }
 
-    /* Ensure footer boxes are horizontally aligned */
     .footer_box_container {
-      flex-wrap: nowrap;
-      /* Prevent wrapping */
+      flex-wrap: wrap;
       gap: 1rem;
-      /* Maintain spacing between columns */
+    }
+
+    .copyright p {
+      font-size: 0.8rem;
+      /* Smaller font size */
+    }
+
+    .copyright {
+      margin-top: 1rem;
+      /* Adjust the margin for smaller screens */
     }
   }
 </style>
