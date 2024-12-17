@@ -74,6 +74,14 @@ if (isset($_POST['submit'])) {
             cursor: pointer;
             margin-left: 10px;
         }
+
+        @media (max-width: 600px) {
+            .box {
+                width: 90%;
+                padding: 15px;
+                margin-top: 120px;
+            }
+        }
     </style>
 
 </head>
