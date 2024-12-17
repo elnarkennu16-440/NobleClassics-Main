@@ -66,6 +66,47 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     .sliding-on-scroll {
       opacity: 0;
     }
+    
+    /* Mobile Responsive Styles */
+    @media only screen and (max-width: 768px) {
+      .about_heading {
+        min-height: 10rem;
+        padding: 1rem;
+      }
+
+      .about_heading h3 {
+        font-size: 2.5rem;
+      }
+
+      .about_heading p {
+        font-size: 1.2rem;
+      }
+
+      .about .row {
+        flex-direction: column;
+      }
+
+      .about .image,
+      .about .content {
+        flex: 1 0 100%; /* Make each section take up full width on mobile */
+      }
+
+      .about .content {
+        padding: 1rem;
+      }
+
+      .steps .box-container {
+        grid-template-columns: repeat(1, 1fr); /* Show boxes in single column on mobile */
+      }
+
+      .steps .box {
+        margin-bottom: 1rem;
+      }
+
+      .questions_cont {
+        padding: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
