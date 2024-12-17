@@ -2,27 +2,27 @@
   <div class="footer_box_container">
 
     <div class="footer_box">
-      <h3>NobleClassics</h3>
-      <p><i class="fas fa-phone"></i> 09453870032</p>
-      <p><i class="fas fa-envelope"></i> n.classics@gmail.com</p>
-      <p><i class="fas fa-map-marker-alt"></i> Daet, CN, Philippines</p>
-      <p><i class="fa-solid fa-shop"></i> 7:00am - 9:00pm</p>
+      <h3>Quick Links</h3>
+      <a href="Login.php">Login</a>
+      <a href="Register.php">Register</a>
+      <a href="Shop_System.php">Shop</a>
+      <a href="Cart_System.php">Cart</a>
     </div>
 
     <div class="footer_box">
       <h3>Helpful Links</h3>
       <a href="index.php">Home</a>
       <a href="About.php">About Us</a>
-      <a href="Shop_System.php">Shop</a>
       <a href="Contact.php">Contact Us</a>
+      <a href="Order_System.php">Order</a>
     </div>
 
     <div class="footer_box">
-      <h3>Quick Links</h3>
-      <a href="Login.php">Login</a>
-      <a href="Register.php">Register</a>
-      <a href="Cart_System.php">Cart</a>
-      <a href="Order_System.php">Order</a>
+      <h3>NobleClassics</h3>
+      <p><i class="fas fa-phone"></i> 09453870032</p>
+      <p><i class="fas fa-envelope"></i>nc.books@gmail.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> Daet, Camarines Norte, Philippines</p>
+      <p><i class="fa-solid fa-shop"></i>7:00am - 9:00pm</p>
     </div>
   </div>
 
