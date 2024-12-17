@@ -35,13 +35,11 @@ if (isset($_POST['add_to_cart'])) {
   <link rel="stylesheet" href="Style.css">
   <link rel="stylesheet" href="Home.css">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
+     body, html {
       height: 100%;
-      overflow-x: hidden;
-      /* Prevent horizontal scroll */
+      margin: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     .pro_box {
@@ -211,6 +209,14 @@ if (isset($_POST['add_to_cart'])) {
       /* Start position for slide-in effect */
       transition: transform 0.5s ease-out, opacity 0.5s ease-out;
       /* Smooth animation */
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: auto; /* Ensures the footer is pushed to the bottom */
     }
 
     /* Apply zoom effect on hover */

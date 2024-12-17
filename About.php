@@ -24,6 +24,49 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
       50% { background: radial-gradient(circle, #51341f, #1f0e01); }
       100% { background: radial-gradient(circle, #1f0e01, #51341f); }
     }
+    
+     body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    /* Wrapper for main content */
+    .content-wrapper {
+      flex: 1;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #2b1b03;
+      color: #dcdcdc;
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    footer a {
+      color: #e69969;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+      color: white;
+    }
+
+    /* Responsive adjustments */
+    @media only screen and (max-width: 768px) {
+      footer {
+        font-size: 0.9rem;
+      }
+    }
 
     @keyframes slideInOnScroll {
       0% {
