@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
             .box {
                 width: 90%;
                 padding: 15px;
-                margin-top: 120px;
+                margin-top: 10px;
             }
         }
     </style>

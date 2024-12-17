@@ -168,87 +168,91 @@ if (isset($_POST['submit'])) {
     }
 
     /* Default for larger screens (desktop) */
-.animated-text {
-  position: relative;
-  text-align: center;
-  width: 25%;
-  padding-right: 40px;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
+    .animated-text {
+      position: relative;
+      text-align: center;
+      width: 25%;
+      padding-right: 40px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
 
-.animated-text span {
-  display: block;
-  font-size: 35px;  /* Adjust font size to match the desired size */
-  line-height: 1;  /* Ensure line height matches font size */
-}
+    .animated-text span {
+      display: block;
+      font-size: 35px;
+      /* Adjust font size to match the desired size */
+      line-height: 1;
+      /* Ensure line height matches font size */
+    }
 
-.animated-text span::before {
-  content: "";
-  display: block;
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto 10px;
-  background-image: url("Display_Images/login-profile.png");
-  background-size: cover;
-}
+    .animated-text span::before {
+      content: "";
+      display: block;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 10px;
+      background-image: url("Display_Images/login-profile.png");
+      background-size: cover;
+    }
 
-.animated-text span::after {
-  content: "";
-  position: absolute;
-  width: 3px;  /* Adjust width of cursor */
-  height: 50%;  /* Make cursor height the same as text height */
-  border-left: 3px solid burlywood;
-  animation: cursor 0.8s infinite steps(14) infinite;
-}
+    .animated-text span::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      /* Adjust width of cursor */
+      height: 50%;
+      /* Make cursor height the same as text height */
+      border-left: 3px solid burlywood;
+      animation: cursor 0.8s infinite steps(14) infinite;
+    }
 
-@keyframes cursor {
-  50% {
-    border-left: 2px solid burlywood; /* Adjust to make blinking effect */
-  }
-}
+    @keyframes cursor {
+      50% {
+        border-left: 2px solid burlywood;
+        /* Adjust to make blinking effect */
+      }
+    }
 
-/* For smaller screens (mobile) */
-@media (max-width: 600px) {
-  .animated-text {
-    position: absolute;
-    top: 10px;
-    left: 55%;
-    transform: translateX(-50%);
-    width: 80% !important;
-    font-size: 14px !important;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    padding-right: 0;
-    margin-bottom: auto;
-  }
+    /* For smaller screens (mobile) */
+    @media (max-width: 600px) {
+      .animated-text {
+        position: absolute;
+        top: 10px;
+        left: 55%;
+        transform: translateX(-50%);
+        width: 80% !important;
+        font-size: 14px !important;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        padding-right: 0;
+        margin-bottom: auto;
+      }
 
-  .animated-text span {
-    font-size: 16px !important;
-  }
+      .animated-text span {
+        font-size: 16px !important;
+      }
 
-  .animated-text span::before {
-    width: 50px;
-    height: 50px;
-  }
+      .animated-text span::before {
+        width: 50px;
+        height: 50px;
+      }
 
-  .animated-text span::after {
-    width: 2px;
-    height: 20% !important;
-  }
+      .animated-text span::after {
+        width: 2px;
+        height: 20% !important;
+      }
 
-  /* Adjust login form positioning */
-  .box {
-    width: 90%;
-    padding: 15px;
-    margin-top: 120px;
-  }
-}
-
+      /* Adjust login form positioning */
+      .box {
+        width: 90%;
+        padding: 15px;
+        margin-top: 90px;
+      }
+    }
   </style>
 </head>
 
@@ -280,8 +284,8 @@ if (isset($_POST['submit'])) {
       const messages = [
         "Welcome To NobleClassics",
         "Explore Different Classic Literature",
-        "Access Exclusive Selections of Classic Works",
-        "Your Choice Your Click",
+        "Access Exclusive Selections of Classic Books",
+        "Your Choice Your Click ✓",
       ];
 
       let currentMessageIndex = 0;
