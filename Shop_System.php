@@ -35,13 +35,16 @@ if (isset($_POST['add_to_cart'])) {
   <link rel="stylesheet" href="Style.css">
   <link rel="stylesheet" href="Home.css">
   <style>
-     body, html {
+    /* General Body and HTML Settings */
+    body,
+    html {
       height: 100%;
       margin: 0;
       display: flex;
       flex-direction: column;
     }
 
+    /* Product Box Styling */
     .pro_box {
       position: relative;
       display: flex;
@@ -49,33 +52,67 @@ if (isset($_POST['add_to_cart'])) {
       align-items: center;
       text-align: center;
       width: 250px;
-      /* Width of the product box */
       margin: 20px;
       background-color: rgb(222, 172, 131);
       border: 1px solid #ddd;
       padding: 15px;
       border-radius: 10px;
+      overflow: hidden;
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
 
-    /* Image Styling to make it fit better */
+    /* Product Container Styling */
+    .pro_box_cont {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    /* Image Styling */
     .pro_box img {
       width: 100%;
       height: 250px;
-      /* Adjust as needed */
       object-fit: cover;
-      /* Ensures the image covers the space without distorting */
       border-radius: 10px;
+      transition: transform 0.3s ease-in-out;
+      /* Smooth zoom effect */
     }
 
-    .book-rating {
-      display: flex;
-      justify-content: center;
-      /* Align stars horizontally */
-      align-items: center;
-      margin-top: 10px;
+    /* On hover, zoom in the image slightly */
+    .pro_box:hover img {
+      transform: scale(1.05);
+      /* Slight zoom effect */
     }
 
-    /* Optional: Adjust the space between the rating and the image */
+    /* Hover effects on .pro_box container */
+    .pro_box:hover img {
+      transform: scale(1.05);
+      /* Slight zoom effect */
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .pro_box {
+        width: 90%;
+        /* Wider for smaller screens */
+        margin: 10px auto;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .pro_box {
+        width: 250px;
+        /* Maintain consistent width */
+        margin: 20px;
+      }
+    }
+
+    /* Button Styling */
     .product_btn {
       margin-top: 10px;
       padding: 10px 15px;
@@ -85,6 +122,31 @@ if (isset($_POST['add_to_cart'])) {
       cursor: pointer;
       border-radius: 5px;
       font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for Add to Cart button */
+    .pro_box:hover .product_btn {
+      background-color: #a47224;
+    }
+
+    /* Title Styling for Product Section */
+    .products_cont .title {
+      font-size: 2rem;
+      color: rgb(79, 24, 35);
+      margin-bottom: 20px;
+    }
+
+    /* Star Rating System Styling */
+    .book-rating {
+      font-size: 16px;
+      color: rgb(100, 30, 30);
+    }
+
+    /* Product Image Link */
+    .book-link {
+      display: block;
+      margin-bottom: 15px;
     }
   </style>
 </head>
@@ -131,7 +193,7 @@ if (isset($_POST['add_to_cart'])) {
             <a href="#" class="book-link" data-title="<?php echo $fetch_products['name']; ?>"
               data-price="<?php echo $fetch_products['price']; ?>"
               data-img="./Book_Images/<?php echo $fetch_products['image']; ?>">
-              <img src="./Book_Images/<?php echo $fetch_products['image']; ?>" alt="">
+              <img src="./Book_Images/<?php echo $fetch_products['image']; ?>" alt="" loading="lazy">
             </a>
             <h3><?php echo $fetch_products['name']; ?></h3>
             <p>₱. <?php echo $fetch_products['price']; ?></p>
@@ -188,89 +250,8 @@ if (isset($_POST['add_to_cart'])) {
     </div>
   </div>
 
-  <style>
-    .pro_box {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      width: 250px;
-      /* Width of the product box */
-      margin: 20px;
-      background-color: rgb(222, 172, 131);
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 10px;
-      overflow: hidden;
-      opacity: 0;
-      /* Initially hidden */
-      transform: translateX(100%);
-      /* Start position for slide-in effect */
-      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-      /* Smooth animation */
-    }
-
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      margin-top: auto; /* Ensures the footer is pushed to the bottom */
-    }
-
-    /* Apply zoom effect on hover */
-    .pro_box:hover img {
-      transform: scale(1.1);
-      /* Zoom in on hover */
-      transition: transform 0.3s ease-in-out;
-      /* Smooth transition for zoom */
-    }
-
-    /* For mobile, adjust the box width and disable animation */
-    @media (max-width: 768px) {
-      .pro_box {
-        width: 90%;
-        /* Make the box wider on mobile */
-        margin: 10px;
-        transform: none !important;
-        /* Disable sliding effect */
-        opacity: 1 !important;
-        /* Keep the boxes fully visible without animation */
-        transition: none;
-        /* Remove transition for smooth effect */
-      }
-    }
-
-    /* For desktop, keep the sliding animation */
-    @media (min-width: 769px) {
-      .pro_box.visible {
-        opacity: 1;
-        /* Fade in when visible */
-        transform: translateX(0);
-        /* Slide in to its normal position */
-      }
-    }
-
-    .product_btn {
-      margin-top: 10px;
-      padding: 10px 15px;
-      background-color: #8f6414;
-      border: none;
-      color: white;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-    }
-
-    .pro_box:hover .product_btn {
-      background-color: #a47224;
-      /* Change color when hovering over the box */
-    }
-  </style>
-
   <script>
+    // Modal functionality for displaying book details
     const bookLinks = document.querySelectorAll('.book-link');
     const modal = document.getElementById('bookDetailsModal');
     const closeModal = document.getElementById('closeModal');
@@ -282,6 +263,7 @@ if (isset($_POST['add_to_cart'])) {
 
     const GOOGLE_BOOKS_API = "https://www.googleapis.com/books/v1/volumes?q=";
 
+    // When a book is clicked, show its details in the modal
     bookLinks.forEach(link => {
       link.addEventListener('click', async function (event) {
         event.preventDefault();
@@ -317,33 +299,33 @@ if (isset($_POST['add_to_cart'])) {
           bookGenre.textContent = "Error fetching genre.";
         }
 
+        // Show the modal
         modal.style.display = 'block';
       });
     });
 
+    // Close the modal when the close button is clicked
     closeModal.addEventListener('click', function () {
       modal.style.display = 'none';
     });
 
-
-    // Create an IntersectionObserver to track when each product box comes into view
+    // IntersectionObserver to display product boxes without sliding animation
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && window.innerWidth > 768) { // Only trigger animation on desktop
-          // When the box is in view, add the 'visible' class to trigger the animation
+        if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // Stop observing after animation is triggered
+        } else {
+          entry.target.classList.remove('visible');
         }
       });
-    }, {
-      threshold: 0.5 // Trigger when 50% of the box is in view
-    });
+    }, { threshold: 0.1 });  // Trigger when 10% of the element is visible
 
-    // Select all product boxes and observe them
+    // Target all product boxes for observing
     const productBoxes = document.querySelectorAll('.pro_box');
     productBoxes.forEach(box => {
-      observer.observe(box); // Start observing each product box
+      observer.observe(box);
     });
+
   </script>
 
   <?php

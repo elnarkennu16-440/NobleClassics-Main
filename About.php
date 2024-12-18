@@ -36,11 +36,12 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
       }
     }
 
-    body {
+    body,
+    html {
+      height: 100%;
+      margin: 0;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      margin: 0;
     }
 
     /* Wrapper for main content */
@@ -48,29 +49,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
       flex: 1;
     }
 
-    /* Footer styles */
-    footer {
-      background-color: #2b1b03;
-      color: #dcdcdc;
-      text-align: center;
-      padding: 1rem;
-      position: relative;
-    }
-
-    footer p {
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    footer a {
-      color: #e69969;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-      color: white;
-    }
+   
 
     /* Responsive adjustments */
     @media only screen and (max-width: 768px) {

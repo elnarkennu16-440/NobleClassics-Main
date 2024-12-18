@@ -120,49 +120,50 @@ if (!isset($_SESSION['user_name']) || !isset($_SESSION['user_email'])) {
       text-decoration-thickness: 2px; /* Add thickness for better visibility */
   }
 
-  /* Mobile Responsiveness for Navbar (kept your original design) */
-  @media (max-width: 768px) {
-      .navbar {
-          display: none; /* Hide navbar links */
-          flex-direction: column;
-          color: #deb583;
-          background-color:rgb(65, 44, 19) !important; /* Set background color to #deb583 */
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-      }
+  /* Mobile Responsiveness for Navbar */
+@media (max-width: 768px) {
+    .navbar {
+        display: none; /* Hide navbar links by default */
+        flex-direction: column;
+        color: #deb583;
+        background-color: rgb(65, 44, 19) !important; /* Set background color */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: -1; /* Ensure it's below other elements when hidden */
+    }
 
-      .navbar a {
-          padding: 10px;
-          text-align: center;
-          color: #fff;
-          font-size: 1.2rem;
-      }
+    .navbar.open {
+        display: flex !important; /* Show navbar when 'open' class is added */
+        z-index: 999; /* Ensure navbar appears above other elements */
+    }
 
-      .navbar a:hover {
-          background-color: #444;
-      }
+    .navbar a {
+        padding: 10px;
+        text-align: center;
+        color: #fff;
+        font-size: 1.2rem;
+    }
 
-      #user_menu_btn {
-          display: block;
-          cursor: pointer;
-      }
+    .navbar a:hover {
+        background-color: #444;
+    }
 
-      #user_menu_btn.open + .navbar {
-          display: flex; /* Show navbar when menu is open */
-      }
-  }
+    #user_menu_btn {
+        display: block;
+        cursor: pointer;
+    }
 
-  /* Mobile menu icon styling */
-  #user_menu_btn i {
-      font-size: 50px;
-  }
+    #user_menu_btn i {
+        font-size: 50px;
+    }
 
-  /* Hover effect for menu icon */
-  #user_menu_btn i:hover {
-      filter: brightness(1);
-  }
+    /* Hover effect for menu icon */
+    #user_menu_btn i:hover {
+        filter: brightness(1);
+    }
+}
 
   /* Keep original styling for login button */
   .last_part .loginorreg .login-button {
@@ -187,8 +188,9 @@ if (!isset($_SESSION['user_name']) || !isset($_SESSION['user_email'])) {
 </style>
 
 <script>
-  document.getElementById('user_menu_btn').addEventListener('click', function() {
-      const navbar = document.querySelector('.navbar');
-      navbar.classList.toggle('open');
-  });
+ document.getElementById('user_menu_btn').addEventListener('click', function() {
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('open');  // Toggle the 'open' class to show/hide the navbar
+});
+
 </script>
