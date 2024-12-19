@@ -36,7 +36,65 @@ if (isset($_POST['verify_email'])) {
 
             $mail->isHTML(true);
             $mail->Subject = 'Password Reset Verification Code';
-            $mail->Body    = "Your password reset verification code is: <strong>$verification_code</strong>";
+            $mail->Body = "
+            <html>
+            <head>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-color: #f4f4f4;
+                        color: rgb(0, 0, 0);
+                        padding: 20px;
+                    }
+                    .container {
+                        background-color: rgb(75, 58, 23);
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 8px rgb(241, 204, 123);
+                        max-width: 600px;
+                        margin: 0 auto;
+                    }
+                    h2 {
+                        color: rgb(65, 41, 12);
+                    }
+                    p {
+                        color: rgb(0, 0, 0);
+                        font-size: 16px;
+                        line-height: 1.5;
+                    }
+                    .code {
+                        background-color:rgb(0, 0, 0);
+                        padding: 10px;
+                        border-radius: 4px;
+                        font-size: 18px;
+                        font-weight: bold;
+                        text-align: center;
+                        margin: 10px 0;
+                    }
+                    .footer {
+                        margin-top: 10px;
+                        font-size: 12px;
+                        color: rgb(65, 41, 12);
+                        text-align: center;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <h2>Password Reset Verification</h2>
+                    <p>Dear User,</p>
+                    <p>We received a request to reset your password. Please use the following verification code to proceed with resetting your password:</p>
+                    <p class='code'>$verification_code</p>
+                    <p>If you didn't request this, you can safely ignore this email.</p>
+                    <div class='footer'>
+                        <p>Best regards,</p>
+                        <p>NobleClassics</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        ";
+        
 
             $mail->send();
             $message[] = "A verification code has been sent to your gmail. Please enter the code to proceed.";
