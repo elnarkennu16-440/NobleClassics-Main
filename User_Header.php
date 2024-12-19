@@ -20,7 +20,6 @@ if (!isset($_SESSION['user_name']) || !isset($_SESSION['user_email'])) {
     $_SESSION['user_name'] = 'Guest';  // You can change this to a placeholder name
     $_SESSION['user_email'] = 'guest@example.com';  // You can change this to a placeholder email
 }
-
 ?>
 
 <header class="user_header">
@@ -185,12 +184,26 @@ if (!isset($_SESSION['user_name']) || !isset($_SESSION['user_email'])) {
       background-color: #4b1005;
       text-decoration: none;
   }
+
+  /* Positioning the navbar at the right for larger screens */
+  .user_flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+  }
+
+  .navbar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+  }
 </style>
 
 <script>
- document.getElementById('user_menu_btn').addEventListener('click', function() {
+  // Toggle navbar visibility when the menu button is clicked
+  document.getElementById('user_menu_btn').addEventListener('click', function() {
     const navbar = document.querySelector('.navbar');
     navbar.classList.toggle('open');  // Toggle the 'open' class to show/hide the navbar
 });
-
 </script>

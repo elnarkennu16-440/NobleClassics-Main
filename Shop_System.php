@@ -2,9 +2,11 @@
 include 'Config.php';
 session_start();
 
-$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$user_id = $_SESSION['user_id'];
 
-// The page will show the content even if the user is not logged in
+if (!isset($user_id)) {
+  header('location:Login.php');
+}
 
 if (isset($_POST['add_to_cart'])) {
   $pro_name = $_POST['product_name'];
@@ -35,119 +37,115 @@ if (isset($_POST['add_to_cart'])) {
   <link rel="stylesheet" href="Style.css">
   <link rel="stylesheet" href="Home.css">
   <style>
-    /* General Body and HTML Settings */
-    body,
-    html {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-    }
+   /* General Body and HTML Settings */
+body,
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
 
-    /* Product Box Styling */
-    .pro_box {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      width: 250px;
-      margin: 20px;
-      background-color: rgb(222, 172, 131);
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 10px;
-      overflow: hidden;
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
+/* Product Box Styling */
+.pro_box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 250px;
+  margin: 20px;
+  background-color: rgb(222, 172, 131);
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
 
-    /* Product Container Styling */
-    .pro_box_cont {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-    }
+/* Product Container Styling */
+.pro_box_cont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
 
-    /* Image Styling */
-    .pro_box img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s ease-in-out;
-      /* Smooth zoom effect */
-    }
+/* Image Styling */
+.pro_box img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out; /* Smooth zoom effect */
+}
 
-    /* On hover, zoom in the image slightly */
-    .pro_box:hover img {
-      transform: scale(1.05);
-      /* Slight zoom effect */
-    }
+/* On hover, zoom in the image slightly */
+.pro_box:hover img {
+  transform: scale(1.05); /* Slight zoom effect */
+}
 
-    /* Hover effects on .pro_box container */
-    .pro_box:hover img {
-      transform: scale(1.05);
-      /* Slight zoom effect */
-      transition: transform 0.3s ease-in-out;
-    }
+/* Hover effects on .pro_box container */
+.pro_box:hover img {
+  transform: scale(1.05); /* Slight zoom effect */
+  transition: transform 0.3s ease-in-out;
+}
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .pro_box {
-        width: 90%;
-        /* Wider for smaller screens */
-        margin: 10px auto;
-      }
-    }
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pro_box {
+    width: 90%; /* Wider for smaller screens */
+    margin: 10px auto;
+  }
+}
 
-    @media (min-width: 769px) {
-      .pro_box {
-        width: 250px;
-        /* Maintain consistent width */
-        margin: 20px;
-      }
-    }
+@media (min-width: 769px) {
+  .pro_box {
+    width: 250px; /* Maintain consistent width */
+    margin: 20px;
+  }
+}
 
-    /* Button Styling */
-    .product_btn {
-      margin-top: 10px;
-      padding: 10px 15px;
-      background-color: #8f6414;
-      border: none;
-      color: white;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-    }
+/* Button Styling */
+.product_btn {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #8f6414;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
 
-    /* Hover effect for Add to Cart button */
-    .pro_box:hover .product_btn {
-      background-color: #a47224;
-    }
+/* Hover effect for Add to Cart button */
+.pro_box:hover .product_btn {
+  background-color: #a47224;
+}
 
-    /* Title Styling for Product Section */
-    .products_cont .title {
-      font-size: 2rem;
-      color: rgb(79, 24, 35);
-      margin-bottom: 20px;
-    }
+/* Title Styling for Product Section */
+.products_cont .title {
+  font-size: 2rem;
+  color: rgb(79, 24, 35);
+  margin-bottom: 20px;
+}
 
-    /* Star Rating System Styling */
-    .book-rating {
-      font-size: 16px;
-      color: rgb(100, 30, 30);
-    }
+/* Star Rating System Styling */
+.book-rating {
+  font-size: 16px;
+  color:rgb(100, 30, 30);
+}
 
-    /* Product Image Link */
-    .book-link {
-      display: block;
-      margin-bottom: 15px;
-    }
+/* Product Image Link */
+.book-link {
+  display: block;
+  margin-bottom: 15px;
+}
+
   </style>
 </head>
 

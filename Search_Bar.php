@@ -20,7 +20,8 @@ if (isset($_POST['add_to_cart'])) {
     mysqli_query($conn, "INSERT INTO `cart`(user_id, name, price, quantity, image) VALUES('$user_id', '$product_name', '$product_price', '$product_quantity', '$product_image')") or die('query failed');
     $message[] = 'Product Added to Cart!';
   }
-};
+}
+;
 ?>
 
 <!DOCTYPE html>
@@ -31,13 +32,16 @@ if (isset($_POST['add_to_cart'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NOBLECLASSICS - SEARCH BAR</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="Style.css">
   <link rel="stylesheet" href="Home.css">
 
   <style>
     /* Ensure the body takes the full height of the viewport */
-    html, body {
+    html,
+    body {
       height: 100%;
       margin: 0;
       display: flex;
@@ -112,13 +116,46 @@ if (isset($_POST['add_to_cart'])) {
       flex-wrap: wrap;
       justify-content: center;
       margin-top: 30px;
-      flex: 1; /* Allow this section to take up remaining space */
+      flex: 1;
+      /* Allow this section to take up remaining space */
     }
 
     .pro_box_cont {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      /* Adjusted to make the boxes bigger */
       gap: 20px;
+      justify-items: center;
+      /* Center the product boxes */
+      max-width: 100%;
+      /* Ensure the container is responsive */
+    }
+
+    .pro_box {
+      padding: 20px;
+      background-color: rgb(222, 172, 131);
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .pro_box img {
+      width: 100%;
+      height: auto;
+      max-width: 200px;
+      /* Adjust the size of images */
+      margin-bottom: 15px;
+    }
+
+    .pro_box h3 {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+
+    .pro_box p {
+      font-size: 1rem;
+      margin-bottom: 15px;
     }
 
     .product_btn {
@@ -129,28 +166,8 @@ if (isset($_POST['add_to_cart'])) {
       font-weight: 900;
       cursor: pointer;
     }
-
-    /* Footer responsiveness */
-    .footer {
-      padding: 20px;
-      background-color: #f1f1f1;
-      text-align: center;
-      margin-top: auto; /* Push footer to the bottom */
-    }
-
-    @media (max-width: 768px) {
-      .footer {
-        padding: 15px;
-      }
-    }
-
-    /* For smaller devices */
-    @media (max-width: 480px) {
-      .footer {
-        padding: 10px;
-      }
-    }
   </style>
+
 </head>
 
 <body>
@@ -161,7 +178,7 @@ if (isset($_POST['add_to_cart'])) {
 
   <section class="search-form">
     <form method="post" action="">
-      <input type="text" name="search_box" placeholder="Search Products here..." />
+      <input type="text" name="search_box" placeholder="Search title name of the products..." />
       <button type="submit" name="search_btn">
         <i class="fas fa-search"></i>
       </button>
@@ -176,11 +193,25 @@ if (isset($_POST['add_to_cart'])) {
         $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE name LIKE '%{$search_item}%'") or die('query failed');
         if (mysqli_num_rows($select_products) > 0) {
           while ($fetch_products = mysqli_fetch_assoc($select_products)) {
-      ?>
+            ?>
             <form action="" method="post" class="pro_box">
               <img src="./Book_Images/<?php echo $fetch_products['image']; ?>" alt="">
               <h3><?php echo $fetch_products['name']; ?></h3>
               <p>₱. <?php echo $fetch_products['price']; ?></p>
+
+              <!-- Add Rating (Star System) -->
+              <div class="book-rating">
+                <?php
+                $rating = rand(1, 5); // Random rating for demonstration
+                for ($i = 0; $i < 5; $i++) {
+                  if ($i < $rating) {
+                    echo '★';  // filled star
+                  } else {
+                    echo '☆';  // empty star
+                  }
+                }
+                ?>
+              </div>
 
               <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
               <input type="number" name="product_quantity" min="1" value="1">
@@ -189,7 +220,7 @@ if (isset($_POST['add_to_cart'])) {
 
               <input type="submit" value="Add to Cart" name="add_to_cart" class="product_btn">
             </form>
-      <?php
+            <?php
           }
         } else {
           echo '<p class="empty" style="padding: 1rem; text-align: center; background: linear-gradient(to bottom, #29113b, #34240b); color: #fdc5a1; font-size: 1.5rem; font-weight: bold; width: fit-content; margin: 0 auto; margin-bottom: 20px; margin-top: 30px; border-radius: 20px; box-shadow: 0px 4px 10px white;">No Matching Products Found!</p>';

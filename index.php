@@ -327,7 +327,7 @@ if (isset($_POST['add_to_cart'])) {
 
 
   <section class="carousel_cont">
-    <h1 class="title slide"> <i class="fa fa-book" style="margin-right: 10px;"></i> Upcoming Products
+    <h1 class="title slide"> <i class="fa fa-book" style="margin-right: 10px;"></i> Top Selling Products
     </h1>
 
     <div class="carousel">

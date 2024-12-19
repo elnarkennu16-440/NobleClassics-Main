@@ -65,8 +65,15 @@ if(isset($_POST['order_btn'])){
 include 'User_Header.php';
 ?>
 
+<div class="checkout_heading" style="display: flex; align-items: center; justify-content: center; gap: 1rem; flex-flow: column; min-height: 15rem; padding: 2rem; animation: backgroundAnimation 5s infinite; margin-bottom: 20px;">
+  <h3 style="font-size: 5rem; color: white; text-transform: capitalize; margin: 0;">Order Confirmation</h3>
+  <p style="font-size: 2.3rem; color: #aaaaaa; margin: 0;">
+    <a href="Cart_System.php" style="color: #e69969; text-decoration: none;" onmouseover="this.style.textDecoration='underline'; this.style.color='white';" onmouseout="this.style.textDecoration='none'; this.style.color='#e69969';">Shopping Cart</a>
+    <span> | Checkout</span>
+  </p>
+</div>
+
 <section class="display_order">
-<h2 style="padding: 1.5rem; text-align: center; background: linear-gradient(to bottom, #29113b, #34240b); color: #fdc5a1; font-size: 1.5rem; font-weight: bold; width: fit-content; margin: 0 auto; margin-bottom: 20px; border-radius: 20px; box-shadow: 0px 4px 10px white; margin-top: 30px;">Purchased Product Details</h2>
   <?php
     $grand_total=0;
     $select_cart=mysqli_query($conn,"SELECT * FROM `cart` WHERE user_id='$user_id'") or die('query failed');
@@ -86,6 +93,14 @@ include 'User_Header.php';
     </div>
 
   </div>
+  
+  <style>
+       @keyframes backgroundAnimation {
+      0% { background: radial-gradient(circle, #1f0e01, #51341f); }
+      50% { background: radial-gradient(circle, #51341f, #1f0e01); }
+      100% { background: radial-gradient(circle, #1f0e01, #51341f); }
+    }
+  </style>
   
 
   <?php

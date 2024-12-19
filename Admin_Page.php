@@ -53,7 +53,7 @@ if (!isset($admin_id)) {
     }
 
     body {
-      background: linear-gradient(to left, #33164c, #3d2606);
+      background: linear-gradient(to left,rgb(68, 34, 2),rgb(43, 27, 4));
       background-size: 300% 300%;
       animation: gradientShift 5s ease infinite;
       margin: 0;
@@ -128,25 +128,26 @@ if (!isset($admin_id)) {
       color: darksalmon;
     }
 
-   /* General container for the chart */
-.graph-container {
-  max-width: 100%;
-  margin: 30px auto;
-  padding: 20px;
-  text-align: center;
-}
+    /* General container for the chart */
+    .graph-container {
+      max-width: 100%;
+      margin: 30px auto;
+      padding: 20px;
+      text-align: center;
+    }
 
-/* Style for the canvas */
-#adminGraph {
-  width: 100%;  /* Use 100% of the container's width */
-  height: 500px; /* Set a fixed height for the graph */
-  max-width: 1200px; /* Maximum width */
-  margin: 0 auto;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-}
-
-
+    /* Style for the canvas */
+    #adminGraph {
+      width: 100%;
+      /* Use 100% of the container's width */
+      height: 500px;
+      /* Set a fixed height for the graph */
+      max-width: 1200px;
+      /* Maximum width */
+      margin: 0 auto;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
   </style>
 
 </head>
@@ -159,7 +160,7 @@ if (!isset($admin_id)) {
 
   <section class="admin_dashboard">
     <div class="reports-header">
-      <i class="fas fa-chart-line"></i> 
+      <i class="fas fa-chart-line"></i>
       REPORTS
     </div>
 
@@ -274,7 +275,7 @@ if (!isset($admin_id)) {
     // Example data for the current year (2024)
     const adminData = {
       labels: [
-        "January", "February", "March", "April", "May", "June", 
+        "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
       ],
       datasets: [
@@ -282,19 +283,19 @@ if (!isset($admin_id)) {
           label: "2024 Revenue (in PHP)",
           data: [0, 0, 1000, 500, 0, 2000, 1500, 0, 300, 0, 0, 10000], // Low sales; December is ₱10,000
           backgroundColor: [
-            "rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", 
-            "rgba(255, 206, 86, 0.2)", "rgba(75, 192, 192, 0.2)", 
-            "rgba(153, 102, 255, 0.2)", "rgba(255, 159, 64, 0.2)", 
-            "rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", 
-            "rgba(255, 206, 86, 0.2)", "rgba(75, 192, 192, 0.2)", 
+            "rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)", "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)", "rgba(255, 159, 64, 0.2)",
+            "rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)", "rgba(75, 192, 192, 0.2)",
             "rgba(153, 102, 255, 0.2)", "rgba(255, 159, 64, 0.2)"
           ],
           borderColor: [
-            "rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", 
-            "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)", 
-            "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)", 
-            "rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", 
-            "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)", 
+            "rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)",
+            "rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)",
             "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)"
           ],
           borderWidth: 1

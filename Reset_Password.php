@@ -1,53 +1,24 @@
 <?php
 session_start();
 include 'Config.php';
-require 'vendor/autoload.php'; // Include PHPMailer
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 $message = [];
 
-// Step 1: Email verification and sending confirmation code
-if (isset($_POST['verify_email'])) {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+// Step 3: Set new password
+if (isset($_POST['set_password'])) {
+    $email = $_SESSION['reset_email'] ?? null;
+    $new_password = mysqli_real_escape_string($conn, md5($_POST['new_password']));
+    $confirm_password = mysqli_real_escape_string($conn, md5($_POST['confirm_password']));
 
-    // Check if the email exists in the database
-    $check_user = mysqli_query($conn, "SELECT * FROM `register` WHERE email='$email'") or die('Query failed');
-
-    if (mysqli_num_rows($check_user) > 0) {
-        // Generate a random code for email verification
-        $verification_code = rand(100000, 999999);
-        $_SESSION['email_verification'] = ['email' => $email, 'code' => $verification_code];
-
-        // Send the verification code via email using PHPMailer
-        $mail = new PHPMailer(true);
-        try {
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'nc4shop@gmail.com'; // Your Gmail email
-            $mail->Password = 'ecsv juvq ifoc cuga'; // Replace with your Gmail app password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
-
-            $mail->setFrom('nc4shop@gmail.com', 'NobleClassics');
-            $mail->addAddress($email);
-
-            $mail->isHTML(true);
-            $mail->Subject = 'Password Reset Verification Code';
-            $mail->Body    = "Your password reset verification code is: <strong>$verification_code</strong>";
-
-            $mail->send();
-            $message[] = "A verification code has been sent to your gmail. Please enter the code to proceed.";
-
-            header("Location: Enter_Verification.php");
-            exit();
-        } catch (Exception $e) {
-            $message[] = "Mailer Error: " . $mail->ErrorInfo;
-        }
+    if (!$email) {
+        $message[] = "Session expired. Please restart the password reset process.";
+    } elseif ($new_password !== $confirm_password) {
+        $message[] = "Passwords do not match. Please try again.";
     } else {
-        $message[] = "No account found with that email.";
+        // Update password in the database
+        mysqli_query($conn, "UPDATE `register` SET password='$new_password' WHERE email='$email'") or die('Query failed');
+        unset($_SESSION['reset_email']);
+        $message[] = "Password Reset Successfully! You can now log in with your new password.";
     }
 }
 ?>
@@ -57,7 +28,8 @@ if (isset($_POST['verify_email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOBLECLASSICS - FORGOT PASSWORD</title>
+    <title>NOBLECLASSICS - RESET PASSWORD</title>
+    <link rel="stylesheet" href="ForgotPassword.css">
 </head>
 <body>
     <?php
@@ -75,13 +47,18 @@ if (isset($_POST['verify_email'])) {
 
     <div class="box forgot_password_box">
         <form action="" method="post">
-            <h2>Forgot Password</h2>
+            <h2>Set New Password</h2>
             <div class="inputbox">
-                <input type="email" name="email" required="required">
-                <span>Email</span>
+                <input type="password" name="new_password" required="required">
+                <span>New Password</span>
                 <i></i>
             </div>
-            <input type="submit" name="verify_email" value="Verify Email">
+            <div class="inputbox">
+                <input type="password" name="confirm_password" required="required">
+                <span>Confirm New Password</span>
+                <i></i>
+            </div>
+            <input type="submit" name="set_password" value="Set Password">
             <div class="links">
                 <a href="Login.php">Back to Login Account</a>
             </div>
@@ -89,7 +66,7 @@ if (isset($_POST['verify_email'])) {
     </div>
 
 
-   <style>
+    <style>
       @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
       :root {

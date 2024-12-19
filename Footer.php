@@ -20,7 +20,7 @@
     <div class="footer_box">
       <h3>NobleClassics</h3>
       <p><i class="fas fa-phone"></i> 09453870032</p>
-      <p><i class="fas fa-envelope"></i> nc.shop@gmail.com</p>
+      <p><i class="fas fa-envelope"></i> nc4shop@gmail.com</p>
       <p><i class="fas fa-map-marker-alt"></i> Daet, Camarines Norte, Philippines</p>
       <p><i class="fa-solid fa-shop"></i> 7:00am - 9:00pm</p>
     </div>
@@ -163,10 +163,6 @@
   .copyright p {
     font-size: 1rem;
     margin: 0;
-  }
-
-  .copyright span {
-    font-weight: bold;
   }
 
 
