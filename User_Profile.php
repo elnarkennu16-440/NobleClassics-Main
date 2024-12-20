@@ -2,27 +2,21 @@
 session_start();
 include 'Config.php';
 
-if (!isset($_SESSION['user_id'])) {
-    header('location: Login.php');
-    exit();
-}
+$message = [];
 
-$user_id = $_SESSION['user_id'];
+// Step 2: Verify code and allow password reset
+if (isset($_POST['verify_code'])) {
+    $email = $_SESSION['email_verification']['email'] ?? null;
+    $code = $_POST['code'];
 
-// Fetch user details from the database
-$query = "SELECT * FROM `register` WHERE id='$user_id'";
-$result = mysqli_query($conn, $query) or die('Query failed');
-$user_data = mysqli_fetch_assoc($result);
-
-// Handle profile updates
-if (isset($_POST['update_profile'])) {
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $home_address = mysqli_real_escape_string($conn, $_POST['home_address']);
-
-    $update_query = "UPDATE `register` SET phone='$phone', home_address='$home_address' WHERE id='$user_id'";
-    mysqli_query($conn, $update_query) or die('Query failed');
-    $message = "Profile updated successfully!";
-    header('Refresh: 0'); // Refresh the page to show updated details
+    if ($email && $code == $_SESSION['email_verification']['code']) {
+        $_SESSION['reset_email'] = $email;
+        unset($_SESSION['email_verification']);
+        header("Location: Reset_Password.php");
+        exit();
+    } else {
+        $message[] = "Invalid verification code. Please try again.";
+    }
 }
 ?>
 
@@ -32,10 +26,65 @@ if (isset($_POST['update_profile'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>NOBLECLASSICS - VERIFICATION CODE</title>
+    <link rel="stylesheet" href="ForgotPassword.css">
+</head>
+
+<body>
+    <?php
+    if (isset($message)) {
+        foreach ($message as $msg) {
+            echo '
+            <div class="message">
+                <span>' . $msg . '</span>
+                <i class="fa-solid fa-xmark" onclick="this.parentElement.remove();"></i>
+            </div>
+            ';
+        }
+    }
+    ?>
+
+    <div class="box forgot_password_box">
+        <form action="" method="post">
+            <h2>Enter Verification Code</h2>
+            <p class="note">Note: Check your Gmail or Spam</p>
+            <div class="inputbox">
+                <input type="text" name="code" required="required">
+                <span>Verification Code</span>
+                <i></i>
+            </div>
+            <input type="submit" name="verify_code" value="Verify Code">
+            <div class="links">
+                <a href="Login.php">Back to Login Account</a>
+            </div>
+        </form>
+    </div>
+
+
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        :root {
+            --bg-col: #fff;
+            --box-col: transparent;
+            --mov-col1: #ffa200;
+            --mov-col2: #c53f21;
+            --form-col: linear-gradient(to right, #ff948b, #e7bc50);
+            --blk-col: #3d3220;
+            --whi-col: #fff;
+            --inp-col: #7b1515;
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+
         body {
-            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -46,172 +95,324 @@ if (isset($_POST['update_profile'])) {
             -webkit-backdrop-filter: blur(5px)
         }
 
-        .header {
-            font-size: 30px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-            color:rgb(101, 59, 20);
-        }
-
-        .profile-container {
-            background: linear-gradient(to right,rgb(135, 73, 66),rgb(243, 200, 94));
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            width: 400px;
-        }
-
-        .profile-container img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin-bottom: 15px;
-            border: 2px solid #874942;
-        }
-
-        .profile-container h2 {
-            margin: 10px 0;
-            margin-bottom: 20px;
-            font-size: 28px;
-            color:rgb(85, 49, 21);
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .profile-container p {
-            margin: 5px 0;
-            color: beige;
-            font-weight: bold;
-            font-size: 15px;
-        }
-
-        .profile-container input[type="text"],
-        .profile-container textarea {
+        .message {
+            background-color: linear-gradient(to bottom, #654321, #000000);
             width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid orange;
-            background-color:rgb(143, 67, 59);
-            font-weight: bold;
-            color:rgb(255, 204, 165);
-            border-radius: 10px;
-            font-size: 16px;
-            font-family: 'Courier New', Courier, monospace;
+            z-index: 100000;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-bottom: 1rem;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .edit-button,
-        .save-button {
-            background: #8b4611;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            color: #fff;
-            border: none;
-            padding: 5px 15px;
-            border-radius: 5px;
+        .message span {
+            font-size: 1rem;
+            color: var(--black);
+        }
+
+        .message i {
             cursor: pointer;
-            margin-top: fixed;
+            color: red;
+            font-size: 1rem;
         }
 
-        .edit-button:hover,
-        .save-button:hover {
-            background: rgb(81, 45, 9);
+        .message i:hover {
+            transform: rotate(90deg);
         }
 
-        .back-button {
-            margin-top: 15px;
-            font-weight: bold;
-            font-family: 'Courier New', Courier, monospace;
-            display: inline-block;
-            background: #8b4611;
-            color: #fff;
-            padding: 8px 15px;
+        .note {
+            font-size: 12px;
+            /* Small font size */
+            font-style: italic;
+            /* Italicize the text */
+            color: #555;
+            /* Gray color for the text */
+            margin-top: 10px;
+            /* Space between the heading and the note */
+            text-align: center;
+        }
+
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-col);
+        }
+
+
+
+        .box {
+            position: relative;
+            width: 450px;
+            height: 380px;
+            background: var(--blk-col);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+                25px 35px 20px rgba(0, 0, 0, 0.05),
+                25px 30px 30px rgba(0, 0, 0, 0.05),
+                inset -20px -20px 25px rgba(0, 0, 0, 0.9);
+        }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 450px;
+            height: 600px;
+            background: linear-gradient(0deg, transparent, transparent, var(--mov-col1), var(--mov-col1));
+            z-index: 1;
+            transform-origin: bottom right;
+            animation: animate 6s linear infinite;
+        }
+
+        .box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 450px;
+            height: 600px;
+            background: linear-gradient(0deg, transparent, transparent, var(--mov-col1), var(--mov-col1));
+            z-index: 1;
+            transform-origin: bottom right;
+            animation: animate 6s linear infinite;
+            animation-delay: -3s;
+        }
+
+        .borderline {
+            position: absolute;
+            top: 0;
+            inset: 0;
+        }
+
+        .borderline::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 450px;
+            height: 600px;
+            background: linear-gradient(0deg, transparent, transparent, var(--mov-col2), var(--mov-col2));
+            z-index: 1;
+            transform-origin: bottom right;
+            animation: animate 6s linear infinite;
+            animation-delay: -1.5s;
+        }
+
+        .borderline::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 450px;
+            height: 600px;
+            background: linear-gradient(0deg, transparent, transparent, var(--mov-col2), var(--mov-col2));
+            z-index: 1;
+            transform-origin: bottom right;
+            animation: animate 6s linear infinite;
+            animation-delay: -4.5s;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .box form {
+            position: absolute;
+            inset: 4px;
+            padding: 20px 40px;
+            border-radius: 8px;
+            background: var(--form-col);
+            background-size: cover;
+            /* Ensure the gradient fills the area */
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box form h2 {
+            color: var(--blk-col);
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 0.1rem;
+
+        }
+
+        .box form .inputbox {
+            position: relative;
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        .box form .inputbox input {
+            position: relative;
+            width: 100%;
+            padding: 15px 10px 10px;
+            background: transparent;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            color: var(--bg-col);
+            font-size: 1rem;
+            letter-spacing: 0.05rem;
+            transition: 0.5s;
+            z-index: 10;
+        }
+
+        .box form .inputbox span {
+            position: absolute;
+            left: 0;
+            padding: 15px 0px 10px;
+            pointer-events: none;
+            color: var(--inp-col);
+            font-size: 1rem;
+            letter-spacing: 0.05rem;
+            transition: 0.5s;
+        }
+
+        .box form .inputbox input:valid~span,
+        .box form .inputbox input:focus~span {
+            color: var(--blk-col);
+            font-size: 0.9em;
+            transform: translateY(-34px);
+        }
+
+        .box form .inputbox i {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--blk-col);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+        .box form .inputbox input:valid~i,
+        .box form .inputbox input:focus~i {
+            height: 44px;
+        }
+
+        .box form .links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .box form .links a {
+            margin: 20px 0;
+            font-size: 0.9em;
+            color: var(--inp-col);
             text-decoration: none;
-            border-radius: 10px;
         }
 
-        .back-button:hover {
-            background:rgb(51, 27, 8);
+        .box form .links a:hover {
+            color: var(--blk-col);
+            text-decoration: underline;
+        }
+
+        .box form input[type="submit"] {
+            border: none;
+            outline: none;
+            padding: 9px 25px;
+            background: rgb(219, 122, 47);
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 35px 35px 35px 35px;
+            font-weight: 600;
+            width: 70%;
+            justify-content: center;
+            color: var(--blk-col);
+            letter-spacing: 1px;
+            margin: 0 auto;
+            margin-top: 15px;
+        }
+
+        .box form input[type="submit"]:active {
+            opacity: 0.8;
+        }
+
+        .box form input[type="submit"]:hover {
+            background-color: var(--blk-col);
+            color: var(--whi-col);
+            font-weight: 500;
+        }
+
+
+        .box form select {
+            width: 100%;
+            padding: 20px 0px 10px;
+            background: transparent;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            color: var(--inp-col);
+            font-size: 1rem;
+            letter-spacing: 0.05rem;
+        }
+
+
+        .box form .inputbox select:valid {
+            color: #000;
+        }
+
+        /* Login Form */
+        .login_box {
+            width: 450px;
+            height: 380px;
+        }
+
+        .login_box form {
+            padding: 20px;
+        }
+
+        .login_box form .inputbox {
+            margin-top: 35px;
         }
 
         .message {
-            color: orangered;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .input-email-container p {
-    display: inline-block;
-    text-align: center;
-    color: darksalmon !important;
-    font-size: 16px;
-    font-family: 'Courier New', Courier, monospace;
-    margin-bottom: 40px !important;
-    border-radius: 10px;
-    background-color:rgb(94, 49, 16);
-    border: 1px solid #caa080;  /* Add a border around the text */
-    padding: 5px;  /* Optional: Adjust padding for spacing between text and border */
-}
-
-.input-email-container {
-    display: inline-block;  /* Optional: Ensures that the container is tightly wrapped around the paragraph */
-}
-
-
-        .input-container {
+            background-color: #33230f;
+            border: 1px solid rgb(224, 159, 85);
+            color: rgb(236, 174, 93);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 40px !important;
+            font-family: Arial, sans-serif;
             display: flex;
-            color:  #94582a;
-            font-size: 40px;
+            justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .input-container input {
-            width: calc(100% - 100px);
-            /* Ensure input doesn't stretch too wide */
+        .message i {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .box {
+                width: 90%;
+                padding: 15px;
+                margin-top: 10px;
+            }
         }
     </style>
-</head>
-
-<body>
-    <div class="profile-container">
-        <div class="header">𝙽𝚘𝚋𝚕𝚎 𝙲𝚕𝚊𝚜𝚜𝚒𝚌𝚜</div>
-
-        <?php if (!empty($user_data['profile_picture'])): ?>
-            <img src="<?= $user_data['profile_picture']; ?>" alt="Profile Picture">
-        <?php else: ?>
-            <img src="Icons/user_icon.png" alt="Default Profile Picture">
-        <?php endif; ?>
-
-        <h2><?= $user_data['name']; ?></h2>
-
-        <div class="input-email-container">
-            <p>Email Address:</p>
-            <p><?= $user_data['email']; ?></p>
-        </div>
-
-        <form action="" method="POST">
-            <div class="input-container">
-                <input type="text" name="phone" placeholder="Phone Number" value="<?= $user_data['phone']; ?>">
-                <button type="submit" class="edit-button">Edit</button>
-            </div>
-
-            <div class="input-container">
-                <textarea name="home_address" placeholder="Home Address"><?= $user_data['home_address']; ?></textarea>
-                <button type="submit" class="edit-button">Edit</button>
-            </div>
-
-            <div class="input-container">
-                <button type="submit" name="update_profile" class="save-button">Save Changes</button>
-            </div>
-        </form>
-
-        <?php if (isset($message)): ?>
-            <p class="message"><?= $message; ?></p>
-        <?php endif; ?>
-
-        <a href="index.php" class="back-button">Back to Home</a>
-    </div>
 </body>
 
 </html>
