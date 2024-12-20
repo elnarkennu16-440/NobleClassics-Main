@@ -57,13 +57,17 @@ INSERT INTO `products` (`id`, `name`, `price`, `image`) VALUES
 
 
 CREATE TABLE `register` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `phone` varchar(15) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
   `user_type` varchar(20) NOT NULL DEFAULT 'user',
+  `profile_picture` varchar(255) DEFAULT 'Icons/user_icon.png',
+  `home_address` varchar(500) DEFAULT NULL
   PRIMARY KEY (`id`)
 );
+
 
 ALTER TABLE `cart`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;

@@ -38,14 +38,32 @@ if (!isset($_SESSION['user_name']) || !isset($_SESSION['user_email'])) {
         <a href="Order_System.php"><i class="fa-solid fa-box"></i> ORDERS</a>
       </nav>
 
-      <div class="last_part">
-        <div class="loginorreg">
-          <!-- Replace Login text with the user icon image -->
-          <a href="Login.php" class="login-button">
-            <img src="Icons/user_icon.png" alt="Login" style="width: 24px; height: 24px; border-radius: 50%;"> 
-          </a>
-        </div>
-      </div>
+     <?php
+// Check if a session is already active before starting a new one
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
+<div class="last_part">
+    <div class="loginorreg">
+        <?php
+        if (isset($_SESSION['user_id'])) {
+            // User is logged in, show profile link
+            echo '<a href="User_Profile.php" class="login-button">
+                    <img src="Icons/user_icon.png" alt="Profile" style="width: 24px; height: 24px; border-radius: 50%;"> 
+                  </a>';
+        } else {
+            // User is not logged in, show login link
+            echo '<a href="Login.php" class="login-button">
+                    <img src="Icons/user_icon.png" alt="Login" style="width: 24px; height: 24px; border-radius: 50%;"> 
+                  </a>';
+        }
+        ?>
+    </div>
+</div>
+
+
 
       <div class="icons">
         <!-- Search Icon (Image version) -->
