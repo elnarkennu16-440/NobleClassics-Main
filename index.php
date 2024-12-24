@@ -12,16 +12,22 @@ if (isset($_POST['add_to_cart'])) {
   $pro_quantity = $_POST['product_quantity'];
   $pro_image = $_POST['product_image'];
 
-  $check = mysqli_query($conn, "SELECT * FROM `cart` where name='$pro_name' and user_id='$user_id'") or die('query failed');
-
-  if (mysqli_num_rows($check) > 0) {
-    $message[] = 'Already Added to Cart!';
+  // Check if the user is logged in
+  if (!$user_id) {
+    // If not logged in, send a message to prompt user to log in
+    $message[] = 'Please Log in to your Account to Proceed with Adding this Product to your Cart.';
   } else {
-    mysqli_query($conn, "INSERT INTO `cart`(user_id,name,price,quantity,image) VALUES ('$user_id','$pro_name','$pro_price','$pro_quantity','$pro_image')") or die('query2 failed');
-    $message[] = 'Product Added to Cart!';
+    // If logged in, proceed with adding the product to the cart
+    $check = mysqli_query($conn, "SELECT * FROM `cart` where name='$pro_name' and user_id='$user_id'") or die('query failed');
+
+    if (mysqli_num_rows($check) > 0) {
+      $message[] = 'Already Added to Cart!';
+    } else {
+      mysqli_query($conn, "INSERT INTO `cart`(user_id,name,price,quantity,image) VALUES ('$user_id','$pro_name','$pro_price','$pro_quantity','$pro_image')") or die('query2 failed');
+      $message[] = 'Product Added to Cart!';
+    }
   }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +36,11 @@ if (isset($_POST['add_to_cart'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NOBLECLASSICS - HOME</title>
+  <title>NOBLECLASSICS</title>
+   <link rel="icon" href="Display_Images/nobleclassics-logo-image.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="Display_Images/nobleclassics-logo-image-48x48.png" sizes="48x48" type="image/png">
+  <link rel="icon" href="Display_Images/nobleclassics-logo-image-192x192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="Display_Images/nobleclassics-logo-image-512x512.png" sizes="512x512" type="image/png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -42,11 +52,78 @@ if (isset($_POST['add_to_cart'])) {
 </head>
 
 <body>
+    
+    <div id="loader-container">
+    <div id="loader">
+      <div class="cube"></div>
+      <div class="cube"></div>
+      <div class="cube"></div>
+    </div>
+  </div>
 
   <?php
   include 'User_Header.php';
   ?>
   <style>
+    /* Loader Container */
+    #loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      /* Semi-transparent background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    /* Loader Animation */
+    #loader {
+      display: flex;
+      justify-content: space-between;
+      width: 60px;
+      height: 60px;
+    }
+
+    .cube {
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(45deg, #ff4500, #ffcc00);
+      /* 3D Effect */
+      animation: rotate-cube 1.5s infinite ease-in-out;
+    }
+
+    .cube:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .cube:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .cube:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    /* Cube Animation */
+    @keyframes rotate-cube {
+
+      0%,
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
+
+      50% {
+        transform: scale(1.5) rotate(180deg);
+      }
+    }
+    
     @keyframes slide-in {
       0% {
         transform: translateX(-100%);
@@ -638,6 +715,30 @@ if (isset($_POST['add_to_cart'])) {
     const productBoxes = document.querySelectorAll('.pro_box');
     productBoxes.forEach(box => {
       observer.observe(box);
+    });
+  </script>
+  
+  <script>
+    // Show loader for 3 seconds
+    window.onload = function () {
+      const loaderContainer = document.getElementById('loader-container');
+      setTimeout(() => {
+        loaderContainer.style.opacity = '0';
+        loaderContainer.style.visibility = 'hidden';
+      }, 3000); // 3 seconds
+    };
+
+    // Show loader when any button is clicked
+    document.addEventListener('click', (event) => {
+      if (event.target.tagName === 'BUTTON') {
+        const loaderContainer = document.getElementById('loader-container');
+        loaderContainer.style.opacity = '1';
+        loaderContainer.style.visibility = 'visible';
+        setTimeout(() => {
+          loaderContainer.style.opacity = '0';
+          loaderContainer.style.visibility = 'hidden';
+        }, 3000); // 3 seconds
+      }
     });
   </script>
 
